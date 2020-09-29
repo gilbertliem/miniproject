@@ -1,0 +1,26 @@
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.homenav {
+  padding: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar img {
+  height: auto;
+  max-width: 50px;
+  margin-right: 5px;
+}
+
+nav input {
+  padding: 5px;
+  width: 50vw;
+}

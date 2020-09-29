@@ -1,0 +1,101 @@
+.category {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 80px;
+}
+
+.sub-categories {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sub-categories p {
+  /* text-decoration: none; */
+  padding: 5px 25px;
+  border-radius: 20px;
+  margin-right: 5px;
+  color: #000000;
+}
+
+.sub-categories p:hover {
+  background: #eb507f;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.sub-categories .active {
+  background: #eb507f;
+}
+
+.row-input {
+  display: flex;
+}
+
+.row-review {
+  display: flex;
+}
+
+.gambar {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.bintang {
+  height: 20px;
+  width: 20px;
+  margin: 15px 0;
+}
+
+.col-input {
+  position: relative;
+  top: -20px;
+}
+
+.col-input h2 {
+  margin-bottom: -5px;
+}
+
+.col-input input {
+  padding: 10px;
+  height: 20vh;
+  width: 75vw;
+}
+
+.komentar {
+  position: relative;
+  top: -25px;
+}
+
+/* .review-body img {
+  height: auto;
+  max-width: 5vw;
+} */
+/* .row img {
+  height: auto;
+  width: 100px;
+}
+
+
+
+.col {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+}
+
+.star-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 
+.star-row .bintang {
+  height: auto;
+  width: 2vw;
+} */

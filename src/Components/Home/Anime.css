@@ -1,0 +1,60 @@
+.category {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 80px;
+}
+
+.sub-categories {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.sub-categories p {
+  padding: 5px 25px;
+  /* border: 1px solid black; */
+  border-radius: 40%;
+  margin-right: 5px;
+}
+
+.sub-categories p:hover {
+  background: #eb507f;
+  cursor: pointer;
+}
+
+.sub-categories .active {
+  background: #eb507f;
+}
+
+/* MOVIE LIST */
+
+.body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.card {
+  transition: transform 0.5s;
+  margin: 10px;
+  border-radius: 10px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.card .info {
+  position: relative;
+  top: -20px;
+}
+
+.card .info h1 {
+  margin-bottom: -15px;
+}
+
+.card img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
