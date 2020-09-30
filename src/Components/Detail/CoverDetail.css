@@ -1,3 +1,7 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 .cover {
   box-sizing: border-box;
   background: url("../../Images/saint.png");
