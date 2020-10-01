@@ -31,5 +31,12 @@ nav input {
 
 .profile img {
   height: auto;
-  max-width: 50px;
+  max-width: 70px;
+}
+
+.profile{
+	width: 300px;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
 }

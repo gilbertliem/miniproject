@@ -28,3 +28,15 @@ nav input {
   padding: 5px;
   width: 50vw;
 }
+
+.profile img {
+  height: auto;
+  max-width: 70px;
+}
+
+.profile{
+	width: 300px;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
