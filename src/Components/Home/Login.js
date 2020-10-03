@@ -4,7 +4,6 @@ import styles from './Login.module.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-import Spinner from '../../UI/Spinner/Spinner';
 
 class Login extends Component {
 	
@@ -52,7 +51,7 @@ class Login extends Component {
 			<div>
 				<Modal open={open} onClose={onClose}  className={styles.Modal}>
 					<div className={styles.ContainerLogin}>
-						<h1 onClick={onClose}>X</h1>
+						<h1 onClick={onClose}>x</h1>
 						<h2>Login Form</h2>	
 						<form className={styles.Form} onSubmit={this.submitHandler}>
 							<h3>Email</h3>
