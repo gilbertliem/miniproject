@@ -48,7 +48,7 @@ export default class Register extends Component {
 			<div>
 				<Modal open={open} onClose={onClose}  className={styles.Modal}>
 					<div className={styles.Container}>
-						<h1 onClick={onClose}>X</h1>
+						<h1 onClick={onClose}>x</h1>
 						<h2>Register an Account</h2>
 						<form className={styles.Form} onSubmit={this.submitHandler}>
 							<h3>Full Name</h3>

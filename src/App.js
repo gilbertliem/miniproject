@@ -10,6 +10,9 @@ import Adventure from "./Components/Home/Adventure";
 import Science from "./Components/Home/Science";
 import Comedy from "./Components/Home/Comedy";
 import Footer from "./Components/Footer";
+import Register from './Components/Home/Register';
+import Login from './Components/Home/Login';
+import Home from './Pages/Home';
 
 // DETAIL PAGE
 // import DetailNav from "./Components/Detail/DetailNav";
@@ -38,10 +41,11 @@ export default class App extends Component {
 
       // HOME PAGE
       <Router>
-        <HomeNav />
-        <Cover />
+       
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route path="/" component={Home} />
+		  <Route path="/login" component={Login} />
+		  <Route path="/register" component={Register} />
           <Route path="/anime" component={Anime} />
           <Route path="/action" component={Action} />
           <Route path="/adventure" component={Adventure} />

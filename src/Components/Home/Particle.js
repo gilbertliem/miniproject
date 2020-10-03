@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import styles from '../Home.module.css';
+import styles from './Home.module.css';
 
 const  Particle = () => {
 		return(
