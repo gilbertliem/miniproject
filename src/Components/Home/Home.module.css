@@ -31,12 +31,15 @@
 }
 
 .Li a{
-	color: white;
+	color: #ccc;
 	font-size: 25px;
 	text-decoration: none;
 	width: 100%;
 	box-sizing: border-box;
 	display: block;
+	letter-spacing: .20em;
+	text-transform: uppercase;
+	font-weight: bold;
 	}
 
 .Li a:hover,

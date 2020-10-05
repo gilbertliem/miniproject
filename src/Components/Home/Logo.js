@@ -76,7 +76,7 @@ function Logo () {
 
 	const master_tl = gsap.timeline({repeat: -1, repeatDelay: 1});
 	master_tl
-	  .add((movement_tl), 0)
+	  .add((movement_tl), 0.1)
 	  .add((n_tl), 0.7)
 	  .add((e_tl), 0.8)
 	  .add((t_tl), 1.08)
@@ -84,10 +84,10 @@ function Logo () {
 	  .add((l_tl), 1.33)
 	  .add((i_tl), 1.63)
 	  .add((x_tl), 1.7)
-	  .add((exit_tl), 600)
+	  .add((exit_tl), 6)
 		
 		return(
-		<div className="netflix-container"><svg width="867" height="233" viewBox="0 0 867 233" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<div className="netflix-container"><svg className="svg" width="867" height="233" viewBox="0 0 867 233" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<g id="N">
 			  <path id="N1-base" className="base" d="M0 232.8L37 227.8V101.6L35.1 0H0V232.8Z" />
 			  <path id="N1-shadow" d="M0 232.8L37 227.8V101.6L35.1 0H0V232.8Z" fill="url(#N1-shadowFill)" />

@@ -92,10 +92,10 @@ class Navbar extends Component{
 				<li className={styles.Li}><NavLink to="/">Movies</NavLink></li>
 				<li className={styles.Li}><NavLink to="/about">About</NavLink></li>
 				{!token ? <li className={styles.Li}
-							  onClick={() => this.onChange("register", true)}><NavLink to="/register">Register</NavLink></li>
+							  onClick={() => this.onChange("register", true)}><NavLink to="#">Register</NavLink></li>
 				: <li className={styles.Li}><NavLink to="#">Hi, {user.username}</NavLink></li>}
 				{!token ? <li className={styles.Li}
-							  onClick={() => this.onChange("open", true)}><NavLink to="/login">Login</NavLink></li>
+							  onClick={() => this.onChange("open", true)}><NavLink to="#">Login</NavLink></li>
 				: <li className={styles.Li} onClick={this.logout}><NavLink to="/">Logout</NavLink></li> }
 			</ul>
 			{modal}

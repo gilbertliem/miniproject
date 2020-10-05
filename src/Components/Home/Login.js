@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid, Modal, TextField } from "@material-ui/core";
+import { Modal } from "@material-ui/core";
 import styles from './Login.module.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
@@ -10,14 +10,12 @@ class Login extends Component {
 	state = {
 		email: '',
 		password: '',
-		loading: false
 	}
 	
 	submitHandler = async (e) => {
 		e.preventDefault();
 		console.log("test");
 		try {
-			this.setState({loading:true})
 			console.log("loading" + this.state.loading);
 		  	const { email, password } = this.state;
 		 	const submit = await axios.post(
@@ -34,8 +32,6 @@ class Login extends Component {
 		} catch (error) {
 		 	console.log("error", error);
 			}
-			this.setState({loading:false})
-		console.log("loading is " + this.state.loading);
 	  	};
 
 	handleChange = (e) => {
@@ -45,7 +41,7 @@ class Login extends Component {
 
 	render() {	
 		
-		const { open, onClose, loading } = this.props
+		const { open, onClose } = this.props
 		
 		return(
 			<div>
