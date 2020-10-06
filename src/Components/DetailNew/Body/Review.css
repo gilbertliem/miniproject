@@ -1,0 +1,43 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.row-input {
+  display: flex;
+}
+
+.row-review {
+  display: flex;
+}
+
+.gambar {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.bintang {
+  height: 20px;
+  width: 20px;
+  margin: 15px 0;
+}
+
+.col-input {
+  position: relative;
+  top: -20px;
+}
+
+.col-input h2 {
+  margin-bottom: -5px;
+}
+
+.col-input input {
+  padding: 10px;
+  height: 20vh;
+  width: 75vw;
+}
+
+.komentar {
+  position: relative;
+  top: -25px;
+}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Grid, Modal, TextField } from "@material-ui/core";
+import { Modal } from "@material-ui/core";
 import styles from './Login.module.css';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-export default class Register extends Component {
+class Register extends Component {
 	
 	state = {
 		email: '',
@@ -30,6 +31,7 @@ export default class Register extends Component {
 				onChange('token', response.data.data.token);
 				console.log('bisa')
 				console.log(response);
+				this.props.history.goBack();
 				})
 			.catch(err => {
 				console.log("error is" + err)
@@ -40,13 +42,18 @@ export default class Register extends Component {
 		this.setState({ [e.target.name] : e.target.value })
 	}
 	
+	handleModal = () => {
+		this.props.onClose();
+		this.props.history.goBack();
+	}
+	
 	render() {
 		
 		const { open, onClose } = this.props
 		
 		return(
 			<div>
-				<Modal open={open} onClose={onClose}  className={styles.Modal}>
+				<Modal open={open} onClose={this.handleModal}  className={styles.Modal}>
 					<div className={styles.Container}>
 						<h1 onClick={onClose}>x</h1>
 						<h2>Register an Account</h2>
@@ -72,3 +79,5 @@ export default class Register extends Component {
 		)
 	}
 }
+
+export default withRouter(Register);

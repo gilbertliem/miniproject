@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './Home.module.css';
-import { NavLink } from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
 import Login from "./Login";
 import Register from "./Register";
 import axios from 'axios';
@@ -88,17 +88,23 @@ class Navbar extends Component{
 		
 	return (
 		<div className={styles.DivNav}>
-			<ul className={styles.Ul}>
-				<li className={styles.Li}><NavLink to="/">Movies</NavLink></li>
-				<li className={styles.Li}><NavLink to="/about">About</NavLink></li>
-				{!token ? <li className={styles.Li}
-							  onClick={() => this.onChange("register", true)}><NavLink to="/register">Register</NavLink></li>
-				: <li className={styles.Li}><NavLink to="#">Hi, {user.username}</NavLink></li>}
-				{!token ? <li className={styles.Li}
-							  onClick={() => this.onChange("open", true)}><NavLink to="/login">Login</NavLink></li>
-				: <li className={styles.Li} onClick={this.logout}><NavLink to="/">Logout</NavLink></li> }
-			</ul>
-			{modal}
+			<Router>
+				<ul className={styles.Ul}>
+					<li className={styles.Li}><NavLink to="/">Movies</NavLink></li>
+					<li className={styles.Li}><NavLink to="/about">About</NavLink></li>
+					{!token ? <li className={styles.Li}
+								  onClick={() => this.onChange("register", true)}><NavLink to="/register">Register</NavLink></li>
+					: <li className={styles.Li}><NavLink to="#">Hi, {user.username}</NavLink></li>}
+					{!token ? <li className={styles.Li}
+								  onClick={() => this.onChange("open", true)}><NavLink to="/login">Login</NavLink></li>
+					: <li className={styles.Li} onClick={this.logout}><NavLink to="/">Logout</NavLink></li> }
+				</ul>
+				{modal}
+				<Switch>
+					<Route path="/login" component={Login}></Route>
+					<Route path="/register" component={Register}></Route>
+				</Switch>
+			</Router>
 		</div>	
 		)
 	}

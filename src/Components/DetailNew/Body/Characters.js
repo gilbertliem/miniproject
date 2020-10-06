@@ -1,41 +1,17 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import maldini from "../../Images/maldini.png";
-import ricardo from "../../Images/ricardo.png";
-import cenko from "../../Images/cenko.png";
-import manuel from "../../Images/manuel.png";
-import pirlo from "../../Images/pirlo.png";
+import React from "react";
+
+import maldini from "../../../Images/maldini.png";
+import ricardo from "../../../Images/ricardo.png";
+import cenko from "../../../Images/cenko.png";
+import manuel from "../../../Images/manuel.png";
+import pirlo from "../../../Images/pirlo.png";
 import "./Characters.css";
 
 // ==================== //
 
-export default class Characters extends Component {
-  state = {
-    movies: [],
-  };
-  // FUNCTION
-  componentDidMount() {
-    this.fetchItem();
-  }
-
-  fetchItem = () => {};
-
-  // RENDER
-  render() {
+function Characters () {
+  
     return (
-      <div className="category">
-        <div className="sub-categories">
-          <Link to={"/"}>
-            <p>Overview</p>
-          </Link>
-          <Link to={"/characters"}>
-            <p className="active">Characters</p>
-          </Link>
-          <Link to={"/review"}>
-            <p>Review</p>
-          </Link>
-        </div>
         <div className="body">
           <div className="card">
             <img src={maldini} alt="Paolo Maldini" />
@@ -78,7 +54,7 @@ export default class Characters extends Component {
             </div>
           </div>
         </div>
-      </div>
     );
   }
-}
+
+export default Characters;
