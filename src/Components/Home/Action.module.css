@@ -1,48 +1,49 @@
-* {
-  font-family: "Roboto", sans-serif;
-}
-
 .category {
   box-sizing: border-box;
   margin: 0;
   padding: 10px 80px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  background-color: black;
 }
 
-.sub-categories {
+.subcategories {
   display: flex;
   justify-content: left;
   align-items: center;
 }
 
-.sub-categories p {
+.subcategories p {
   padding: 5px 25px;
-  /* border: 1px solid black; */
-  border-radius: 40%;
+  border-radius: 50px;
   margin-right: 5px;
+  color: white;
+  text-decoration: none;
 }
 
-.sub-categories p:hover {
-  background: #eb507f;
+.subcategories p:hover {
+  background: #ffffff;
   cursor: pointer;
+  color: black;
 }
 
-.sub-categories .active {
-  background: #eb507f;
+.subcategories .active {
+  background: #ffffff;
+  color: black;
 }
 
-/* MOVIE LIST */
-
-.body {
+.bodies {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
 
 .card {
   transition: transform 0.5s;
   margin: 10px;
   border-radius: 10px;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.041);
 }
 
 .card .info {

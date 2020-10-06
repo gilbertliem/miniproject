@@ -1,0 +1,35 @@
+:root {
+  --primary-colour: #E50914;
+  --shadow-colour: black;
+  --shadow-intensity: 0.6;
+  --UIControlsSize: 30px;
+}
+
+/* ---------- Netflix SVG ---------- */
+
+.base {
+  fill: var(--primary-colour);
+  transition: fill 0.4s;
+}
+
+.shadow-start {
+  stop-color: var(--shadow-colour);
+  stop-opacity: var(--shadow-intensity);
+  
+}
+.shadow-end {
+  stop-color: var(--shadow-colour);
+  stop-opacity: 0;
+}
+
+.netflix-container {
+	position: absolute;
+	top: 40%;
+	left:50%;
+	z-index: 2;
+	transform:translate(-50%, -50%);
+}
+
+.svg {
+  margin: 15vmin;
+}

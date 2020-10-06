@@ -1,0 +1,168 @@
+.ContainerSlide{
+	position:relative;
+	width: 100%;
+}
+
+.Slideshow{
+	list-style: none;
+	padding:0;
+	margin: 0;
+}
+
+.Slideshow li {
+	list-style-type: none;
+	position: absolute;
+	top: 0;
+  	left: 0;
+	width: 100%;
+	height: 1000px;
+  	background-size: cover;
+  	background-position: 50% 50%;
+  	background-repeat: no-repeat;
+  	opacity: 0;
+  	z-index: 0;
+  	animation: imageAnimation 50s linear infinite; 
+}
+
+.Slideshow li:nth-child(1) { 
+  background-image: url('../../../Images/4.jpg'); 
+}
+.Slideshow li:nth-child(2) { 
+  background-image: url('../../../Images/tawa.jpg');
+  animation-delay: 10s; 
+}
+.Slideshow li:nth-child(3) { 
+  background-image: url('../../../Images/3.jpg');
+  animation-delay: 20s; 
+}
+.Slideshow li:nth-child(4) { 
+  background-image: url('../../../Images/2.jpg');
+  animation-delay: 30s; 
+}
+.Slideshow li:nth-child(5) { 
+  background-image: url('../../../Images/1.jpg');
+  animation-delay: 40s;
+}
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+.ContainerDesc{
+	color: #ccc;
+	position: absolute;
+	z-index: 2;
+	top:200px;
+	left: 10%;
+	width: 70%;
+}
+
+.ContainerDesc p{
+	font-size: 25px;
+	text-align: justify;
+	width: 40%;
+	margin-bottom: 100px;
+	line-height: 150%;
+	letter-spacing: .10em;
+}
+
+.ContainerDesc img{
+	margin-top: -30px;
+	margin-bottom: 50px;
+	width: 40px;
+	height: 40px;
+}
+
+.ContainerDesc h1{
+	letter-spacing: .20em;
+	font-size: 60px;
+	text-align: justify;
+	font-weight: bold;
+}
+
+.button {
+  --offset: 10px;
+  --border-size: 2px;
+  display: block;
+  position: relative;
+  padding: 1em 2em;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  background: transparent;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+  -webkit-transition: background .8s ease;
+  transition: background .8s ease;
+}
+.button:hover {
+  background: rgba(100, 0, 0, 0.03);
+}
+.button__horizontal, .button__vertical {
+  position: absolute;
+  top: var(--horizontal-offset, 0);
+  right: var(--vertical-offset, 0);
+  bottom: var(--horizontal-offset, 0);
+  left: var(--vertical-offset, 0);
+  -webkit-transition: -webkit-transform .8s ease;
+  transition: -webkit-transform .8s ease;
+  transition: transform .8s ease;
+  transition: transform .8s ease, -webkit-transform .8s ease;
+  will-change: transform;
+}
+.button__horizontal::before, .button__vertical::before {
+  content: '';
+  position: absolute;
+  border: inherit;
+}
+.button__horizontal {
+  --vertical-offset: calc(var(--offset) * -1);
+  border-top: var(--border-size) solid currentcolor;
+  border-bottom: var(--border-size) solid currentcolor;
+}
+.button__horizontal::before {
+  top: calc(var(--vertical-offset) - var(--border-size));
+  bottom: calc(var(--vertical-offset) - var(--border-size));
+  left: calc(var(--vertical-offset) * -1);
+  right: calc(var(--vertical-offset) * -1);
+}
+.button:hover .button__horizontal {
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+}
+.button__vertical {
+  --horizontal-offset: calc(var(--offset) * -1);
+  border-left: var(--border-size) solid currentcolor;
+  border-right: var(--border-size) solid currentcolor;
+}
+.button__vertical::before {
+  top: calc(var(--horizontal-offset) * -1);
+  bottom: calc(var(--horizontal-offset) * -1);
+  left: calc(var(--horizontal-offset) - var(--border-size));
+  right: calc(var(--horizontal-offset) - var(--border-size));
+}
+.button:hover .button__vertical {
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+}
+
