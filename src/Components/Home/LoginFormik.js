@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from "@material-ui/core";
 import styles from './Login.module.css';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -22,6 +22,8 @@ const schemaLogin = Yup.object().shape({
 
 function Login (props) {
 	
+	const { open, onClose, switchModal, onChange } = props;
+	
 	const [loading, setLoading] = useState(false);	
 	
 	const onSubmit = async (values) => {
@@ -36,8 +38,8 @@ function Login (props) {
 					}
 				);
 				localStorage.setItem('token', submit.data.data.token);
-				props.onClose("open", false)
-				props.onChange('token', submit.data.data.token);
+				onClose("open", false)
+				onChange('token', submit.data.data.token);
 				props.history.goBack();
 				setLoading(false)
 				console.log("submit", submit);
@@ -54,14 +56,15 @@ function Login (props) {
 		validationSchema: schemaLogin
 	})
 	
-	
-	const { open, onClose } = props;
-	
 	const handleModal = () => {
-		props.onClose();
-		props.history.goBack();
+		onClose();
 		console.log(formik);
 	}
+	
+	const redirect = () =>{
+		switchModal();
+	}
+	
 	
 	return(
 		<div>
@@ -98,7 +101,7 @@ function Login (props) {
 							</div>
 							{!loading ? <button className={styles.Submit} type="submit" value="Submit">Submit</button>
 								: <button className={styles.Submit} type="submit" value="Submit">Please wait....</button>}
-								<p>Don't have an account? Please <a href="#">register</a> here</p>
+								<p>Don't have an account? Please <Link to="/register" onClick={redirect}>register</Link> here</p>
 						</form>
 					</div>
 				</Modal>

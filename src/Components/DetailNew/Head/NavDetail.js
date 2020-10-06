@@ -62,6 +62,13 @@ function NavDetail () {
 		setUser({});
 	}
 	
+	const switchModal = () => {
+		setModal({
+			open: !modal.open,
+			register: !modal.register
+		})
+	}
+	
 	
 	const {open, register} = modal;
 	
@@ -71,12 +78,14 @@ function NavDetail () {
 		 modale = <Login
             open={open}
             onChange={onChange}
+			switchModal={switchModal}
             onClose={() => onChange("open", false)}
           />
 	 } else if (register){
 		 modale =  <Register
             open={register}
             onChange={onChange}
+			switchModal={switchModal}
             onClose={() => onChange("register", false)}
           />
 	 }
@@ -84,7 +93,7 @@ function NavDetail () {
 	
 	return(
 			<div className={styles.DivNav}>
-				<Router>
+			<Router>
 				<ul>
 					<li><NavLink to="/">Movies</NavLink></li>
 					<li><NavLink to="/about">About</NavLink></li>

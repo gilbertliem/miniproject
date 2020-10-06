@@ -30,6 +30,8 @@ const schemaRegister = Yup.object().shape({
 
 function Register (props) {
 	
+	const { open, onChange, onClose, switchModal } = props;
+	
 	const [loading, setLoading] = useState(false);	
 	
 	const onSubmit = async (values) => {
@@ -45,8 +47,8 @@ function Register (props) {
 			}
 				);
 				localStorage.setItem('token', submit.data.data.token);
-				props.onClose("register", false)
-				props.onChange('token', submit.data.data.token);
+				onClose("register", false)
+				onChange('token', submit.data.data.token);
 				props.history.goBack();
 				setLoading(false)
 				console.log("submit", submit);
@@ -63,18 +65,13 @@ function Register (props) {
 		validationSchema: schemaRegister
 	})
 	
-	
-	const { open, onChange, onClose } = props;
-	
 	const handleModal = () => {
 		onClose();
-		props.history.goBack();
 		console.log(formik);
 	}
 	
 	const redirect = () =>{
-		handleModal();
-		onClose('login', true);
+		switchModal();
 	}
 	
 	return(
