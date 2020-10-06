@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Logo.css';
 import { gsap } from 'gsap';
 import { CustomEase } from "gsap/CustomEase";
 
 
 function Logo () {	
-		
+	
 	gsap.registerPlugin(CustomEase);
-
+	
+	useEffect(() => {
+		
 	const n_tl = gsap.timeline();
 	n_tl
 		.to("#N1-shadow", {opacity: 0, duration: 0.5}, 0.3)
@@ -85,6 +87,9 @@ function Logo () {
 	  .add((i_tl), 1.63)
 	  .add((x_tl), 1.7)
 	  .add((exit_tl), 6)
+	}, [])
+	
+	
 		
 		return(
 		<div className="netflix-container"><svg className="svg" width="867" height="233" viewBox="0 0 867 233" fill="none" xmlns="http://www.w3.org/2000/svg">

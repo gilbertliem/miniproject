@@ -28,8 +28,6 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
 		  <Route path="/detail" component={Detail} />
-		  <Route path="/login" component={Login} />
-		  <Route path="/register" component={Register} />
         </Switch>
         <Footer />
       </Router>

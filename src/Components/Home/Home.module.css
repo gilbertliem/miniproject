@@ -37,7 +37,7 @@
 	width: 100%;
 	box-sizing: border-box;
 	display: block;
-	letter-spacing: .20em;
+	letter-spacing: .25em;
 	text-transform: uppercase;
 	font-weight: bold;
 	}
@@ -151,7 +151,7 @@ transition: background-image 0.2s ease-in-out;
 	
 	position: absolute;
 	text-align: center;
-	width: 99%;
+	width: 50%;
 	top:150px;
 	left: 50%;
 	margin-left: -255px;
@@ -164,10 +164,11 @@ transition: background-image 0.2s ease-in-out;
 }
 
 .Title{
+	letter-spacing: .20em;
 	text-align: center;
 	font-size: 40px;
 	font-weight: 700;
-	color: white;
+	color: #ccc;
 }
 
 .Para{

@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect, useRef} from 'react';
 import styles from '../DetailNew.module.css';
-import { NavLink } from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
 import Login from '../../Home/Login';
 import Register from '../../Home/Register';
 import axios from 'axios';
@@ -48,6 +48,7 @@ function NavDetail () {
 	}, [token])
 	
 	const onChange = (name, value ) => {
+		setToken(localStorage.getItem('token'));
     	setModal({ 
 			[name] : value
 		})
@@ -83,15 +84,21 @@ function NavDetail () {
 	
 	return(
 			<div className={styles.DivNav}>
+				<Router>
 				<ul>
 					<li><NavLink to="/">Movies</NavLink></li>
 					<li><NavLink to="/about">About</NavLink></li>
-					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="#">Register</NavLink></li>
+					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="/register">Register</NavLink></li>
 					: <li><NavLink to="#">Hi, {user.username}</NavLink></li>}
-					{!token ? <li onClick={() => onChange('open', true)}><NavLink to="#">Login</NavLink></li>
+					{!token ? <li onClick={() => onChange('open', true)}><NavLink to="/login">Login</NavLink></li>
 					: <li onClick={logout}><NavLink to="/">Logout</NavLink></li> }
 				</ul>
 				{modale}
+				<Switch>
+					<Route path="/login" component={Login}></Route>
+					<Route path="/register" component={Register}></Route>
+				</Switch>
+			</Router>
 			</div>	
 	)
 }
