@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Navbar from './navbar';
+import Navbar from '../DetailNew/Head/NavDetail';
 import Particle from './Particle';
 import SearchFilm from './SearchFilm';
 import Logo from './Logo';

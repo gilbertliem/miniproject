@@ -10,8 +10,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Science from "./Components/Home/Science";
 // import Comedy from "./Components/Home/Comedy";
 // import Footer from "./Components/Footer";
-import Register from './Components/Home/Register';
-import Login from './Components/Home/Login';
 import Home from './Pages/Home';
 
 // DETAIL PAGE

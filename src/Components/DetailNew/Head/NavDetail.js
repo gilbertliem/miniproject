@@ -3,7 +3,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import styles from '../DetailNew.module.css';
 import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
 import Login from '../../Home/LoginFormik';
-import Register from '../../Home/Register';
+import Register from '../../Home/RegisterFormik';
 import axios from 'axios';
 
 

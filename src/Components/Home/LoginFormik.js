@@ -51,7 +51,7 @@ function Login (props) {
 	const formik = useFormik({
 		initialValues,
 		onSubmit,
-		schemaLogin,
+		validationSchema: schemaLogin
 	})
 	
 	
