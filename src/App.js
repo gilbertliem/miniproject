@@ -9,12 +9,9 @@ import Action from "./Components/Home/Action";
 import Adventure from "./Components/Home/Adventure";
 import Science from "./Components/Home/Science";
 import Comedy from "./Components/Home/Comedy";
-// import Footer from "./Components/Footer";
-import Register from "./Components/Home/Register";
-import Login from "./Components/Home/Login";
 import Home from "./Pages/Home";
 
-// DETAIL PAGE
+
 import Detail from "./Pages/Detail";
 import Footer from "./Components/Footer";
 
