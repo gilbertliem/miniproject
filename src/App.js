@@ -9,6 +9,7 @@ import Action from "./Components/Home/Action";
 import Adventure from "./Components/Home/Adventure";
 import Science from "./Components/Home/Science";
 import Comedy from "./Components/Home/Comedy";
+import Home from "./Pages/Home";
 
 
 import Detail from "./Pages/Detail";
