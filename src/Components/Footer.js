@@ -20,21 +20,8 @@ export default class Footer extends Component {
               <p>Career</p>
               <p>Media</p>
             </div>
-            {/* <div className={styles.colthree}>
-              <h5>Download</h5>
-              <div className={styles.store}>
-                <img src={google} alt="Google Store" />
-                <img src={apple} alt="Apple Store" />
-              </div>
-              <h5>Social Media</h5>
-              <div className={styles.media}>
-                <img src={facebook} alt="Facebook" className={styles.face} />
-                <img src={pinterest} alt="Pinterest" />
-                <img src={instagram} alt="Instagram" />
-              </div>
-            </div> */}
           </div>
-          <p>Copyright © 2020. All Rights Reserved</p>
+          <p className={styles.Copy}>Copyright © 2020. All Rights Reserved</p>
         </footer>
       </>
     );

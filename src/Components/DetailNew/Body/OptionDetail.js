@@ -15,7 +15,6 @@ function OptionDetail () {
 	
 	return(
 		<div className={styles.ContainerOption}>
-			<Router>
 				<Link to="/detail/overview" onClick={onChange} className={styles.cta}>
 					<span>Overview</span>
 					<svg width="13px" height="10px" viewBox="0 0 13 10">
@@ -43,7 +42,6 @@ function OptionDetail () {
 					<Route path="/detail/review" component={Review} />
 					<Route path="/detail/overview" component={Overview} />
 				</Switch>
-			</Router>
 		</div>
 	)
 }

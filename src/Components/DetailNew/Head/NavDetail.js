@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect, useRef} from 'react';
 import styles from '../DetailNew.module.css';
 import {BrowserRouter as Router, Route, NavLink, Switch} from 'react-router-dom';
@@ -93,13 +92,12 @@ function NavDetail () {
 	
 	return(
 			<div className={styles.DivNav}>
-			<Router>
 				<ul>
 					<li><NavLink to="/">Movies</NavLink></li>
 					<li><NavLink to="/about">About</NavLink></li>
-					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="/register">Register</NavLink></li>
+					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="#">Register</NavLink></li>
 					: <li><NavLink to="#">Hi, {user.username}</NavLink></li>}
-					{!token ? <li onClick={() => onChange('open', true)}><NavLink to="/login">Login</NavLink></li>
+					{!token ? <li onClick={() => onChange('open', true)}><NavLink to="#">Login</NavLink></li>
 					: <li onClick={logout}><NavLink to="/">Logout</NavLink></li> }
 				</ul>
 				{modale}
@@ -107,7 +105,6 @@ function NavDetail () {
 					<Route path="/login" component={Login}></Route>
 					<Route path="/register" component={Register}></Route>
 				</Switch>
-			</Router>
 			</div>	
 	)
 }
