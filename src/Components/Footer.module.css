@@ -16,8 +16,16 @@ footer {
   /* align-items: center; */
 }
 
+
 .coltwo p {
-  margin: 5px 10px;
+ 	margin: 5px 10px;
+	letter-spacing: 0.1em;
+	font-size: 20px;
+}
+
+.Copy {
+	letter-spacing: 0.1em;
+	font-size: 20px;
 }
 
 /* footer .row {

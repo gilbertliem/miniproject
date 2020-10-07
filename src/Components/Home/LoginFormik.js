@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from "@material-ui/core";
 import styles from './Login.module.css';
 import axios from 'axios';
+import Netflix from '../../Images/netflixxx.png';
 import { withRouter, Link } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -70,8 +71,8 @@ function Login (props) {
 		<div>
 			<Modal open={open} onClose={handleModal}  className={styles.Modal}>
 				<div className={styles.ContainerLogin}>
-					<h1 onClick={handleModal}>x</h1>
 					<h2>Login Form</h2>	
+					<img src={Netflix} alt="Netflix" width="140" height="105"></img>
 						<form className={styles.Form} onSubmit={formik.handleSubmit}>
 							<div className={styles.FormControl}>
 							<label htmlFor="email">Email</label>
@@ -90,7 +91,7 @@ function Login (props) {
 							<label htmlFor="password">Password</label>
 							<input 
 								id="password"
-								name="password" 
+								name="password"
 								type="password" 
 								placeholder="Password" 
 								onBlur={formik.handleBlur}
@@ -99,7 +100,7 @@ function Login (props) {
 							{formik.touched.password && formik.errors.password 
 									? <div className={styles.Error}>{formik.errors.password}</div> : null }
 							</div>
-							{!loading ? <button className={styles.Submit} type="submit" value="Submit">Submit</button>
+							{!loading ? <button className={styles.Submit} type="submit" value="Submit">Login</button>
 								: <button className={styles.Submit} type="submit" value="Submit">Please wait....</button>}
 								<p>Don't have an account? Please <Link to="/register" onClick={redirect}>register</Link> here</p>
 						</form>

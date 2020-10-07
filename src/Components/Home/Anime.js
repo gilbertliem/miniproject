@@ -57,8 +57,9 @@ export default class Anime extends Component {
           </div>
           <div className={styles.bodies}>
             {this.state.movies.length > 0
-              ? this.state.movies.map((data) => (
-                  <Link to={"/detail"} key={data.id} className={styles.card}>
+              ? this.state.movies.map((data) => {
+				  return(
+                  <Link to="/detail" key={data.id} className={styles.card}>
                     <img
                       src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                       alt={data.title}
@@ -68,7 +69,7 @@ export default class Anime extends Component {
                       <h4>Genre</h4>
                     </div>
                   </Link>
-                ))
+			  )})
               : "Movie is not available."}
           </div>
         </div>
