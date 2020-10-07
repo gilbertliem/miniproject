@@ -6,13 +6,14 @@ import cenko from "../../../Images/cenko.png";
 import manuel from "../../../Images/manuel.png";
 import pirlo from "../../../Images/pirlo.png";
 import "./Characters.css";
+import styles from './BodyDetail.module.css';
 
 // ==================== //
 
 function Characters () {
   
     return (
-        <div className="body">
+        <div className={styles.BodyCharacter}>
           <div className="card">
             <img src={maldini} alt="Paolo Maldini" />
             <div className="info">

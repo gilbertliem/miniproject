@@ -3,10 +3,10 @@
 }
 
 .Body{
-	margin-top: 100px;
-	margin-left: 100px;
+	margin: 100px;
 	position: relative;
 }
+
 
 .Hr{
 	position: absolute;
@@ -28,4 +28,88 @@
 	line-height: 160%;
 	text-align: justify;
 	font-size: 20px;
+}
+
+.BodyReview{
+	margin: 100px;
+	position: relative;
+	border-radius: 8px;
+	background-color: #FAFAFA;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.RowInput{
+	margin: 50px;
+	padding-top: 50px;
+	display: flex;
+	flex-direction: row;
+}
+.RowInput div:nth-child(1){
+	margin-right: 50px;
+}
+
+.RowInput h2{
+	letter-spacing: .20em;
+	font-weight: bold;
+}
+
+.RowInput img:nth-child(1){
+	border-radius: 5px;
+	height: 100px;
+ 	width: 100px;
+ 	margin-right: 10px;
+}
+
+.Input{
+	padding: 10px;
+	height: 20vh;
+  	width: 60vw;
+}
+
+.Star{
+	height: 20px;
+  	width: 20px;
+ 	margin: 15px 0;
+}
+
+.RowInput2{
+	margin: 50px;
+	padding-bottom: 50px;
+	display: flex;
+	flex-direction: row;
+}
+.RowInput2 div:nth-child(1){
+	margin-right: 100px;
+}
+
+.RowInput2 h2{
+	letter-spacing: .20em;
+	font-weight: bold;
+}
+
+.RowInput2 p{
+	letter-spacing: .15em;
+	line-height: 160%;
+	padding-right: 200px;
+	text-align: justify;
+}
+
+.RowInput2 img:nth-child(1){
+	border-radius: 5px;
+	height: 100px;
+ 	width: 100px;
+ 	margin-right: 10px;
+}
+
+
+.BodyCharacter{
+	margin: 100px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+}
+
+.BodyCharacter img{
+	width: 150px;
+	height: 150px;
 }

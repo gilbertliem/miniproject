@@ -35,10 +35,6 @@
   transform: translateY(-10px);
 }
 
-img {
-  /* border-radius: 10px; */
-  width: 100%;
-}
 
 .page-btn {
   border-radius: 50%;
