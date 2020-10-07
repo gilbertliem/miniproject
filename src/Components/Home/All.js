@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./All.module.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -108,17 +108,19 @@ export default class Adventure extends Component {
         <HomeWrapper>
           <div>
             <Slider {...settings}>
-              {this.state.movies.map((pict) => (
-                <Link to={"/detail"} key={pict.id}>
-                  <div key={pict.id} className={styles.cardcol}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${pict.poster_path}`}
-                      alt={pict.title}
-                    />
-                    <h3>{pict.title}</h3>
-                  </div>
-                </Link>
-              ))}
+              {this.state.movies.map((pict) => {
+                return (
+                  <NavLink to="/detail" key={pict.id}>
+                    <div key={pict.id} className={styles.cardcol}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${pict.poster_path}`}
+                        alt={pict.title}
+                      />
+                      <h3>{pict.title}</h3>
+                    </div>
+                  </NavLink>
+                );
+              })}
             </Slider>
           </div>
         </HomeWrapper>
@@ -128,17 +130,19 @@ export default class Adventure extends Component {
         <HomeWrapper>
           <div>
             <Slider {...settings}>
-              {this.state.movies.map((pict) => (
-                <Link to={"/detail"} key={pict.id}>
-                  <div key={pict.id} className={styles.cardcol}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${pict.poster_path}`}
-                      alt={pict.title}
-                    />
-                    <h3>{pict.title}</h3>
-                  </div>
-                </Link>
-              ))}
+              {this.state.movies.map((pict) => {
+                return (
+                  <NavLink to="/detail" key={pict.id}>
+                    <div key={pict.id} className={styles.cardcol}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${pict.poster_path}`}
+                        alt={pict.title}
+                      />
+                      <h3>{pict.title}</h3>
+                    </div>
+                  </NavLink>
+                );
+              })}
             </Slider>
           </div>
         </HomeWrapper>

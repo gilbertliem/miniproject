@@ -25,11 +25,11 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/detail" component={Detail} />
-          <Route path="/anime" component={Anime} />
+          {/* <Route path="/anime" component={Anime} />
           <Route path="/action" component={Action} />
           <Route path="/adventure" component={Adventure} />
           <Route path="/science" component={Science} />
-          <Route path="/comedy" component={Comedy} />
+          <Route path="/comedy" component={Comedy} /> */}
         </Switch>
         <Footer />
       </Router>
