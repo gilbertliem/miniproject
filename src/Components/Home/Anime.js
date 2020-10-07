@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Anime.module.css";
 import SearchFilm from "./SearchFilm";
+// import Head from "./Head";
 
 // ==================== //
 
@@ -32,6 +33,7 @@ export default class Anime extends Component {
   render() {
     return (
       <>
+        {/* <Head /> */}
         {/* <SearchFilm /> */}
         <div className={styles.category}>
           <h1>Browse by Category</h1>
@@ -57,18 +59,20 @@ export default class Anime extends Component {
           </div>
           <div className={styles.bodies}>
             {this.state.movies.length > 0
-              ? this.state.movies.map((data) => (
-                  <Link to={"/detail"} key={data.id} className={styles.card}>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                      alt={data.title}
-                    />
-                    <div className={styles.info}>
-                      <h2>Title</h2>
-                      <h4>Genre</h4>
-                    </div>
-                  </Link>
-                ))
+              ? this.state.movies.map((data) => {
+                  return (
+                    <Link to="/detail" key={data.id} className={styles.card}>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                        alt={data.title}
+                      />
+                      <div className={styles.info}>
+                        <h2>Title</h2>
+                        <h4>Genre</h4>
+                      </div>
+                    </Link>
+                  );
+                })
               : "Movie is not available."}
           </div>
         </div>
