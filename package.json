@@ -15,13 +15,14 @@
     "react-dom": "^16.13.1",
     "react-gsap": "^2.2.1",
     "react-lottie": "^1.2.3",
+    "react-pagination-js": "^2.0.0",
     "react-particles-js": "^3.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-slick": "^0.27.11",
+    "react-spinners": "^0.9.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.0",
-    "react-spinners": "^0.9.0",
     "yup": "^0.29.3"
   },
   "scripts": {

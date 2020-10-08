@@ -7,6 +7,7 @@ import Action from "../Components/Home/Action";
 import Adventure from "../Components/Home/Adventure";
 import Science from "../Components/Home/Science";
 import Comedy from "../Components/Home/Comedy";
+import Detail from "./Detail";
 import "./Home.css";
 
 export default class Home extends Component {
@@ -17,6 +18,7 @@ export default class Home extends Component {
           <Head />
           <Switch>
             <Route exact path="/" component={All} />
+            <Route path="/detail" component={Detail} />
             <Route path="/anime" component={Anime} />
             <Route path="/action" component={Action} />
             <Route path="/adventure" component={Adventure} />

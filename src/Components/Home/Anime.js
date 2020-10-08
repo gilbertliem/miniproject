@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Anime.module.css";
-import SearchFilm from "./SearchFilm";
-// import Head from "./Head";
+import Pagination from "react-pagination-js";
+import "react-pagination-js/dist/styles.css";
 
 // ==================== //
 
 export default class Anime extends Component {
   state = {
     movies: [],
+    currentPage: 1,
+    activePage: 1,
   };
   // FUNCTION
   componentDidMount() {
@@ -29,12 +31,29 @@ export default class Anime extends Component {
       });
   };
 
+  changeCurrentPage = (numPage) => {
+    this.setState({ currentPage: numPage });
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/popular?api_key=86ecab01572806c443d2d6f0ebec2d77&language=en-US&page=" +
+          numPage
+      )
+      .then((response) => {
+        console.log(response.data.results);
+        this.setState({
+          movies: response.data.results,
+          currentPage: numPage,
+          activePage: numPage,
+        });
+        console.log(this.state.movies);
+        window.scrollTo(0, 0);
+      });
+  };
+
   // RENDER
   render() {
     return (
       <>
-        {/* <Head /> */}
-        {/* <SearchFilm /> */}
         <div className={styles.category}>
           <h1>Browse by Category</h1>
           <div className={styles.subcategories}>
@@ -75,6 +94,18 @@ export default class Anime extends Component {
                 })
               : "Movie is not available."}
           </div>
+          <Pagination
+            currentPage={this.state.currentPage}
+            totalPages={10}
+            theme={"dark"}
+            changeCurrentPage={this.changeCurrentPage}
+            // className="pagination"
+            // activePage={this.state.activePage}
+            // itemsCountPerPage={20}
+            // totalItemsCount={10000}
+            // pageRangeDisplayed={5}
+            // onChange={this.nextpage.bind(this)}
+          />
         </div>
       </>
     );
