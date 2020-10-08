@@ -10,23 +10,6 @@ export default class SearchPage extends Component {
   state = {
     movies: [],
   };
-  // FUNCTION
-  componentDidMount() {
-    this.onSearch();
-  }
-
-  onSearch = (keyWords) => {
-    this.setState({ movies: [] });
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&query=${keyWords}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ movies: data.results });
-        // console.log(data);
-        // console.log(this.state.movies);
-      });
-  };
 
   // RENDER
   render() {
