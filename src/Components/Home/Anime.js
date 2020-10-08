@@ -83,7 +83,7 @@ function Anime() {
                 })
               : "Movie is not available."}
           </div>
-          <div>
+          {/* <div>
             <ul>
               {pageNumbers.map((number) => {
                 <li key={number}>
@@ -93,7 +93,7 @@ function Anime() {
                 </li>;
               })}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
