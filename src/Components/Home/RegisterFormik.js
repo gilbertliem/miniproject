@@ -136,7 +136,7 @@ function Register (props) {
 							</div>
 							{!loading ? <button className={styles.Submit} type="submit" value="Submit">Register</button>
 								: <button className={styles.Submit} type="submit" value="Submit">Please wait....</button>}
-								<p>Already have an account? Please <Link to="/login" onClick={redirect}>Login</Link> here</p>
+								<p>Already have an account? Please <Link to="#" onClick={redirect}>Login</Link> here</p>
 						</form>
 					</div>
 				</Modal>

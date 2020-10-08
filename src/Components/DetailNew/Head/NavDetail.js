@@ -101,10 +101,6 @@ function NavDetail () {
 					: <li onClick={logout}><NavLink to="/">Logout</NavLink></li> }
 				</ul>
 				{modale}
-				<Switch>
-					<Route path="/login" component={Login}></Route>
-					<Route path="/register" component={Register}></Route>
-				</Switch>
 			</div>	
 	)
 }

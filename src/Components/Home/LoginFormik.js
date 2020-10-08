@@ -102,7 +102,7 @@ function Login (props) {
 							</div>
 							{!loading ? <button className={styles.Submit} type="submit" value="Submit">Login</button>
 								: <button className={styles.Submit} type="submit" value="Submit">Please wait....</button>}
-								<p>Don't have an account? Please <Link to="/register" onClick={redirect}>register</Link> here</p>
+								<p>Don't have an account? Please <Link to="#" onClick={redirect}>register</Link> here</p>
 						</form>
 					</div>
 				</Modal>
