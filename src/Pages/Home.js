@@ -14,7 +14,6 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        <Router>
           <Head />
           <Switch>
             <Route exact path="/" component={All} />
@@ -25,7 +24,6 @@ export default class Home extends Component {
             <Route path="/science" component={Science} />
             <Route path="/comedy" component={Comedy} />
           </Switch>
-        </Router>
       </>
     );
   }
