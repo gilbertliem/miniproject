@@ -87,19 +87,19 @@ export default class Adventure extends Component {
           <Link to={"/"}>
             <p className={styles.active}>All</p>
           </Link>
-          <Link to={"/anime"}>
+          <Link to={"/category/anime"}>
             <p>Anime</p>
           </Link>
-          <Link to={"/action"}>
+          <Link to={"/category/action"}>
             <p>Action</p>
           </Link>
-          <Link to={"/adventure"}>
+          <Link to={"/category/adventure"}>
             <p>Adventure</p>
           </Link>
-          <Link to={"/science"}>
+          <Link to={"/category/science"}>
             <p>Science Fiction</p>
           </Link>
-          <Link to={"/comedy"}>
+          <Link to={"/category/comedy"}>
             <p>Comedy</p>
           </Link>
         </div>

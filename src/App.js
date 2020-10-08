@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import HomeNav from "./Components/Home/HomeNav";
 // import Cover from "./Components/Home/Cover";
 // import HomePage from "./Pages/HomePage";
-import Anime from "./Components/Home/Anime";
-import Action from "./Components/Home/Action";
-import Adventure from "./Components/Home/Adventure";
-import Science from "./Components/Home/Science";
-import Comedy from "./Components/Home/Comedy";
+
+
+
+
+
+
+
 import Home from "./Pages/Home";
+import User from "./Pages/User";
 
 
 import Detail from "./Pages/Detail";
@@ -25,11 +28,8 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/detail" component={Detail} />
-          {/* <Route path="/anime" component={Anime} />
-          <Route path="/action" component={Action} />
-          <Route path="/adventure" component={Adventure} />
-          <Route path="/science" component={Science} />
-          <Route path="/comedy" component={Comedy} /> */}
+		  <Route path="/user" component={User} />
+		  <Route path="/category/" component={Home}/>
         </Switch>
         <Footer />
       </Router>
