@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import User from "./Pages/User";
+import EditUser from './Pages/EditUser';
 
 
 import Detail from "./Pages/Detail";
@@ -29,7 +30,7 @@ export default class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/detail" component={Detail} />
 		  <Route path="/user" component={User} />
-		  <Route path="/category/" component={Home}/>
+		  <Route path="/category" component={Home}/>
         </Switch>
         <Footer />
       </Router>

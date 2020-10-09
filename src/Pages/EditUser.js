@@ -1,14 +1,14 @@
 import React from 'react';
 import Nav from '../Components/DetailNew/Head/NavDetail';
-import UserShow from '../Components/User/UserShow';
+import UserEdit from '../Components/User/UserEdit';
 import styles from '../Components/User/User.module.css';
 
-function User (props) {
+function User () {
 	
 	return(
 		<div className={styles.Container}>
 			<Nav />
-			<UserShow user={props.user}/>
+			<UserEdit />
  		</div>
 	)
 }

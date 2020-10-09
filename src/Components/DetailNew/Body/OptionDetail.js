@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import styles from '../DetailNew.module.css';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import { Route, Link, Switch} from 'react-router-dom';
 import Overview from './Overview';
 import Review from './Review';
 import Characters from './Characters';
