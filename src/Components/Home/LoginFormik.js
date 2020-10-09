@@ -39,6 +39,7 @@ function Login (props) {
 					}
 				);
 				localStorage.setItem('token', submit.data.data.token);
+				localStorage.setItem('user', JSON.stringify(submit.data.data));
 				onClose("open", false)
 				onChange('token', submit.data.data.token);
 				props.history.goBack();
