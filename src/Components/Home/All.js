@@ -80,9 +80,8 @@ export default class Adventure extends Component {
 
     return (
       <div className={styles.category}>
-		
         <h1>Browse by Category</h1>
-	
+
         <div className={styles.subcategories}>
           <Link to={"/"}>
             <p className={styles.active}>All</p>

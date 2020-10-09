@@ -7,21 +7,24 @@ import Action from "../Components/Home/Action";
 import Adventure from "../Components/Home/Adventure";
 import Science from "../Components/Home/Science";
 import Comedy from "../Components/Home/Comedy";
+import SearchPage from "../Components/Home/SearchPage";
+import Detail from "./Detail";
 import "./Home.css";
 
 export default class Home extends Component {
   render() {
     return (
       <>
-          <Head />
-          <Switch>
-            <Route exact path="/" component={All} />
-            <Route path="/category/anime" component={Anime} />
-            <Route path="/category/action" component={Action} />
-            <Route path="/category/adventure" component={Adventure} />
-            <Route path="/category/science" component={Science} />
-            <Route path="/category/comedy" component={Comedy} />
-          </Switch>
+        <Head />
+        <Switch>
+          <Route exact path="/" component={All} />
+          <Route path="/category/anime" component={Anime} />
+          <Route path="/category/action" component={Action} />
+          <Route path="/category/adventure" component={Adventure} />
+          <Route path="/category/science" component={Science} />
+          <Route path="/category/comedy" component={Comedy} />
+          <Route path="/category/search" component={SearchPage} />
+        </Switch>
       </>
     );
   }
