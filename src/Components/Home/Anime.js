@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-// import React, { Component } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Anime.module.css";
+import ReactPaginate from "react-paginate";
 
 // ==================== //
 
 function Anime() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(10);
 
   useEffect(() => {
     fetchItem();
-  });
+  }, []);
+
+  useEffect(() => {
+    console.log(movies);
+  }, [movies]);
 
   const fetchItem = () => {
     axios
@@ -21,24 +24,15 @@ function Anime() {
         "https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77"
       )
       .then((data) => {
-        setMovies({ movies: data.results });
-        console.log(data);
-        // console.log(this.state.movies);
-        // this.setState({ loading: false });
+        setMovies(data.data.results);
+        // console.log(data);
       });
   };
 
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage;
-  const currentMovies = movies.slice(firstPostIndex, lastPostIndex);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(movies.length / postPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const handleChange = (e) => {
+    const selectedPage = e.selected + 1;
+    setCurrentPage(selectedPage);
+  };
 
   return (
     <>
@@ -66,16 +60,16 @@ function Anime() {
         </div>
         <div>
           <div className={styles.bodies}>
-            {currentMovies.length > 0
-              ? currentMovies.map((data) => {
+            {movies?.length > 0
+              ? movies.map((data) => {
                   return (
                     <Link to="/detail" key={data.id} className={styles.card}>
                       <img
                         src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                        alt={data.title}
+                        alt={data.original_title}
                       />
                       <div className={styles.info}>
-                        <h2>Title</h2>
+                        <h2>{data.original_title}</h2>
                         <h4>Genre</h4>
                       </div>
                     </Link>
@@ -83,17 +77,16 @@ function Anime() {
                 })
               : "Movie is not available."}
           </div>
-          {/* <div>
-            <ul>
-              {pageNumbers.map((number) => {
-                <li key={number}>
-                  <a href="!#" onClick={() => paginate(number)}>
-                    {number}
-                  </a>
-                </li>;
-              })}
-            </ul>
-          </div> */}
+        </div>
+        <div>
+          <ReactPaginate
+            pageCount={1}
+            pageRangeDisplayed={5}
+            marginPagesDisplayed={1}
+            previousLabel={"< "}
+            nextLabel={" >"}
+            onPageChange={handleChange}
+          />
         </div>
       </div>
     </>
@@ -102,6 +95,32 @@ function Anime() {
 
 export default Anime;
 
+// const [postPerPage, setPostPerPage] = useState(10);
+// const lastPostIndex = currentPage * postPerPage;
+// const firstPostIndex = lastPostIndex - postPerPage;
+// const currentMovies = movies.slice(firstPostIndex, lastPostIndex);
+
+// const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+// const pageNumbers = [];
+
+// <div>
+//   <ul>
+//   {pageNumbers.map((number) => {
+//     <li key={number}>
+//     <a href="!#" onClick={() => paginate(number)}>
+//     {number}
+//     </a>
+//     </li>;
+//   })}
+//   </ul>
+// </div>
+
+// for (let i = 1; i <= Math.ceil(movies.length / postPerPage); i++) {
+//   pageNumbers.push(i);
+// }
+
+// import React, { Component } from "react";
 // export default class Anime extends Component {
 //   state = {
 //     movies: [],
