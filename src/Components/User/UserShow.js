@@ -13,32 +13,21 @@ function UserShow () {
 		  [token, setToken] = useState(localStorage.getItem('token')),
 		  [page, setPage] = useState(false);
 	
-	useEffect(() => {
-		if(token){
-			axios.get("https://appdoto.herokuapp.com/api/user/", {
-				headers: {
-					Authorization: token
-				}
-			})
-				.then(response => {
-					setUser(response.data.data);
-			})
-		}
-	}, [])
+	const edit = (name, value) => {
+		setUser({
+			...user,
+			[name]: value
+		},
+		localStorage.setItem('user', JSON.stringify(user)))
+		console.log(user);
+		
+	}
 	
 	useEffect(() => {
-		
-			if(token){
-				axios.get("https://appdoto.herokuapp.com/api/user/", {
-					headers: {
-						Authorization: token
-					}
-				})
-					.then(response => {
-					setUser(response.data.data);
-				})
-			}
-		}, [token])
+		if(token){
+			setUser(JSON.parse(localStorage.getItem('user')));
+		}
+	}, [])
 	
 	const onChange = () => {
 		setPage(!page);
@@ -79,6 +68,7 @@ function UserShow () {
 					user={user}
 					page={page}
 					change={onChange}
+					edit={edit}
 					/>
 		  	</Route>
 			</div>

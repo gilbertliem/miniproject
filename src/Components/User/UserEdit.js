@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function UserEdit (props) {
 	
-	const {user, page, change} = props;
+	const {user, page, change, edit} = props;
 	
 	const [userData, setUserData] = useState({
 			username: user.username,
@@ -19,35 +19,48 @@ function UserEdit (props) {
 	
 	const changeValue = (name, e) => {
 			setUserData({
+				...userData,
 				[name] : e.target.value
 			});
+			console.log(userData);
 		}
-	
-	const submitEdit = async (e) => {
-			if(e.which === 13 && token) {
-				try {
-				setLoading(true);
-				const { email, username, fullname } = userData;
-				const submit = await axios.put("https://appdoto.herokuapp.com/api/user",
-					{
-						body: {
-							email: email,
-							username: username,
-							fullname: fullname
-						},
-						headers: {
-							Authorization: token
-					}
-				})
-				localStorage.setItem('user', JSON.stringify(submit.data.data));
-				change();
-				props.history('/user');
-				setLoading(false)
-			} catch (error) {
-				console.log("error", error);
-			}	
-		}	
+
+	const submitEdit = (e, name) => {
+		if(e.which === 13){
+			edit(name, userData[name]);
+			console.log("name on useredit " + name);
+			props.history.push('/user');
+			console.log('user array name' + userData[name])
+			change();
+			localStorage.setItem('user', JSON.stringify(userData));
+		}
 	}
+	
+// 	const submitEdit = async (e) => {
+// 			if(e.which === 13 && token) {
+// 				try {
+// 				setLoading(true);
+// 				const { email, username, fullname } = userData;
+// 				const submit = await axios.put("https://appdoto.herokuapp.com/api/user",
+// 					{
+// 						body: {
+// 							email: email,
+// 							username: username,
+// 							fullname: fullname
+// 						},
+// 						headers: {
+// 							Authorization: 'Token ' + token
+// 					}
+// 				})
+// 				localStorage.setItem('user', JSON.stringify(submit.data.data));
+// 				change();
+// 				props.history('/user');
+// 				setLoading(false)
+// 			} catch (error) {
+// 				console.log("error", error);
+// 			}	
+// 		}	
+// 	}
 	
 	const {username, email, fullname} = userData;
 	
@@ -60,7 +73,7 @@ function UserEdit (props) {
 				<img src={azanirr} alt="azanirr"></img>
 				<input 
 					onChange={(e) => changeValue("fullname", e)}
-					onKeyPress={(e) => submitEdit(e)}
+					onKeyPress={(e) => submitEdit(e, "fullname")}
 					type="text" value={fullname} name="fullname"></input>
 			</div>
 			<div className={styles.Row}>
@@ -71,11 +84,11 @@ function UserEdit (props) {
 				<div className={styles.Edit}>
 					<input 
 						onChange={(e) => changeValue("email", e)}
-						onKeyPress={(e) => submitEdit(e)}
+						onKeyPress={(e) => submitEdit(e, "email")}
 						type="email" name="email" value={email}></input>
 					<input 
 						onChange={(e) => changeValue("username", e)}
-						onKeyPress={(e) => submitEdit(e)}
+						onKeyPress={(e) => submitEdit(e, "username")}
 						type="text" name="username" value={username}></input>
 				</div>
 			</div>

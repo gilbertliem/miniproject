@@ -8,7 +8,7 @@ function User (props) {
 	return(
 		<div className={styles.Container}>
 			<Nav />
-			<UserShow user={props.user}/>
+			<UserShow />
  		</div>
 	)
 }

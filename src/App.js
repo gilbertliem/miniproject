@@ -13,7 +13,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import User from "./Pages/User";
-import EditUser from './Pages/EditUser';
 
 
 import Detail from "./Pages/Detail";

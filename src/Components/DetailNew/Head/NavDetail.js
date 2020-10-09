@@ -19,14 +19,7 @@ function NavDetail () {
 	
 	useEffect(() => {
 		if(token){
-			axios.get("https://appdoto.herokuapp.com/api/user/", {
-				headers: {
-					Authorization: token
-				}
-			})
-				.then(response => {
-					setUser(response.data.data);
-			})
+			setUser(JSON.parse(localStorage.getItem('user')));
 		}
 	}, [])
 	
@@ -34,14 +27,7 @@ function NavDetail () {
 		
 		if(token !== prevCount){
 			if(token){
-				axios.get("https://appdoto.herokuapp.com/api/user/", {
-					headers: {
-						Authorization: token
-					}
-				})
-					.then(response => {
-					setUser(response.data.data);
-				})
+				setUser(JSON.parse(localStorage.getItem('user')));
 			}
 		}
 	}, [token])
