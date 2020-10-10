@@ -10,9 +10,10 @@ function UserEdit (props) {
 	const {user, page, change, edit} = props;
 	
 	const [userData, setUserData] = useState({
-			username: user.username,
+			id: user.id,
+			nama: user.nama,
 			email: user.email,
-			fullname: user.fullname
+			profileImage: user.profileImage
 	}),
 		[loading, setLoading] = useState(false),
 		[token, setToken] = useState(localStorage.getItem('token'));
@@ -24,79 +25,65 @@ function UserEdit (props) {
 			});
 			console.log(userData);
 		}
-
-	const submitEdit = (e, name) => {
-		if(e.which === 13){
-			edit(name, userData[name]);
-			console.log("name on useredit " + name);
-			props.history.push('/user');
-			console.log('user array name' + userData[name])
-			change();
-			localStorage.setItem('user', JSON.stringify(userData));
-		}
+	
+	const changePic = (e) => {
+		setUserData({
+			...userData,
+			profileImage: e.target.files[0]
+		})
 	}
 	
-// 	const submitEdit = async (e) => {
-// 			if(e.which === 13 && token) {
-// 				try {
-// 				setLoading(true);
-// 				const { email, username, fullname } = userData;
-// 				const submit = await axios.put("https://appdoto.herokuapp.com/api/user",
-// 					{
-// 						body: {
-// 							email: email,
-// 							username: username,
-// 							fullname: fullname
-// 						},
-// 						headers: {
-// 							Authorization: 'Token ' + token
-// 					}
-// 				})
-// 				localStorage.setItem('user', JSON.stringify(submit.data.data));
-// 				change();
-// 				props.history('/user');
-// 				setLoading(false)
-// 			} catch (error) {
-// 				console.log("error", error);
-// 			}	
-// 		}	
-// 	}
+	const submitEdit = async () => {
+				try {
+				setLoading(true);
+				console.log(userData)
+				const { nama, profileImage } = userData;
+				const submit = await axios({
+					method: 'put',
+					url: "https://damp-dawn-67180.herokuapp.com/user/edit",
+					data: {
+							nama: nama,
+							profileImage: profileImage
+						},
+					headers: {
+							access_token : token
+					},
+				  });
+				setUserData(submit.data)
+				console.log(userData)
+				change();
+				setLoading(false)
+			} catch (error) {
+				console.log("error", error);
+		}	
+	}
 	
-	const {username, email, fullname} = userData;
+	const {profileImage, email, nama} = userData;
 	
 	return(
 		<div className={styles.UserShow}>
-			<div>
-				<img src={back} className={styles.Background} alt="back"></img>
-			</div>
-			<div className={styles.Profile}>
-				<img src={azanirr} alt="azanirr"></img>
-				<input 
-					onChange={(e) => changeValue("fullname", e)}
-					onKeyPress={(e) => submitEdit(e, "fullname")}
-					type="text" value={fullname} name="fullname"></input>
-			</div>
-			<div className={styles.Row}>
-				<div className={styles.List}>
-					<h3>Email<span>:</span></h3>
-					<h3>Username<span>:</span></h3>
+			<form onSubmit={submitEdit}>
+				<div>
+					<img src={back} className={styles.Background} alt="back"></img>
 				</div>
-				<div className={styles.Edit}>
+				<div className={styles.Profile}>
+					<img src={profileImage} alt="azanirr"></img>
 					<input 
-						onChange={(e) => changeValue("email", e)}
-						onKeyPress={(e) => submitEdit(e, "email")}
-						type="email" name="email" value={email}></input>
+						onChange={(e) => changePic(e)}
+						type="file" name="profileImage"></input>
 					<input 
-						onChange={(e) => changeValue("username", e)}
-						onKeyPress={(e) => submitEdit(e, "username")}
-						type="text" name="username" value={username}></input>
+						onChange={(e) => changeValue("nama", e)}
+						type="text" value={nama} name="nama"></input>
 				</div>
-			</div>
-			<div className={styles.Button}>
-				<Link onClick={change} to="/user">
-					<button className={styles.SubmitCancel} type="submit">Cancel</button>
-				</Link>
-			</div>
+				<div className={styles.Button}>
+					<Link onClick={change} to="/user">
+						<button className={styles.SubmitEdit} onSubmit={submitEdit} type="submit">Edit</button>
+					</Link>
+					<Link onClick={change} to="/user">
+						<button className={styles.SubmitCancel} type="submit">Cancel</button>
+					</Link>
+				</div>
+			</form>
 		</div>
 	)
 }

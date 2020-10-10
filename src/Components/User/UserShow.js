@@ -14,26 +14,33 @@ function UserShow () {
 		  [page, setPage] = useState(false);
 	
 	const edit = (name, value) => {
-		setUser({
+		const newData = setUser({
 			...user,
 			[name]: value
-		},
-		localStorage.setItem('user', JSON.stringify(user)))
+		})
 		console.log(user);
 		
 	}
 	
-	useEffect(() => {
+	useEffect( () => {
 		if(token){
-			setUser(JSON.parse(localStorage.getItem('user')));
-		}
+			axios.get("https://damp-dawn-67180.herokuapp.com/user/id", {
+				headers: {
+					access_token: token
+				}
+			})
+				.then(response => {
+				setUser(response.data.users);
+				console.log(response);
+			})
+	}
 	}, [])
 	
 	const onChange = () => {
 		setPage(!page);
 	}
 		
-	const { username, fullname, email } = user;
+	const { nama, email, profileImage } = user;
 	
 	return(
 		<div>
@@ -43,17 +50,15 @@ function UserShow () {
 					<img src={back} className={styles.Background} alt="back"></img>
 				</div>
 				<div className={styles.Profile}>
-					<img src={azanirr} alt="azanirr"></img>
-					<h1>{fullname}</h1>
+					<img src={profileImage} alt="user"></img>
+					<h1>{nama}</h1>
 				</div>
 				<div className={styles.Row}>
 					<div className={styles.List}>
 						<h3>Email<span>:</span></h3>
-						<h3>Username<span>:</span></h3>
 					</div>
 					<div className={styles.Edit}>
 						<h3>{email}</h3>
-						<h3>{username}</h3>
 					</div>
 				</div>
 				<div className={styles.Button}>
@@ -63,6 +68,7 @@ function UserShow () {
 				</div>
 			</div>	
 			) : null }
+			<Switch>
 			<Route path="/user/edit">
 				<EditUser 
 					user={user}
@@ -71,6 +77,7 @@ function UserShow () {
 					edit={edit}
 					/>
 		  	</Route>
+			</Switch>
 			</div>
 			
 	)
