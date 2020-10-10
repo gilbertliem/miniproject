@@ -13,7 +13,10 @@ function UserEdit (props) {
 			id: user.id,
 			nama: user.nama,
 			email: user.email,
-			profileImage: user.profileImage
+			profileImage: {
+				file: {},
+				url: ""
+			}
 	}),
 		[loading, setLoading] = useState(false),
 		[token, setToken] = useState(localStorage.getItem('token'));
@@ -27,42 +30,48 @@ function UserEdit (props) {
 		}
 	
 	const changePic = (e) => {
+		const file = e.currentTarget.files[0];
 		setUserData({
 			...userData,
-			profileImage: e.target.files[0]
+			profileImage: {
+				file: e.currentTarget.files[0],
+				url: URL.createObjectURL(file),
+		  	},
 		})
 	}
 	
-	const submitEdit = async () => {
+	const submitEdit = async (e) => {
+				e.preventDefault();
 				try {
-				setLoading(true);
-				console.log(userData)
-				const { nama, profileImage } = userData;
-				const submit = await axios({
-					method: 'put',
-					url: "https://damp-dawn-67180.herokuapp.com/user/edit",
-					data: {
-							nama: nama,
-							profileImage: profileImage
+					setLoading(true);
+					console.log(userData)
+					const { nama, profileImage } = userData;
+					const fd = new FormData();
+					fd.append('nama', nama);
+					fd.append('profileImage', profileImage.file);
+					const submit = await axios({
+						method: 'put',
+						url: "https://damp-dawn-67180.herokuapp.com/user/edit",
+						data: fd,
+						headers: {
+								access_token : token
 						},
-					headers: {
-							access_token : token
-					},
-				  });
-				setUserData(submit.data)
-				console.log(userData)
-				change();
-				setLoading(false)
-			} catch (error) {
-				console.log("error", error);
-		}	
-	}
+					  });
+					setUserData(submit.data)
+					console.log(userData)
+					change();
+					props.history.push('/user');
+					setLoading(false)
+				} catch (error) {
+					console.log("error", error);
+			}	
+		}
 	
 	const {profileImage, email, nama} = userData;
 	
 	return(
 		<div className={styles.UserShow}>
-			<form onSubmit={submitEdit}>
+			<form onSubmit={(e) => submitEdit(e)}>
 				<div>
 					<img src={back} className={styles.Background} alt="back"></img>
 				</div>
@@ -76,12 +85,8 @@ function UserEdit (props) {
 						type="text" value={nama} name="nama"></input>
 				</div>
 				<div className={styles.Button}>
-					<Link onClick={change} to="/user">
-						<button className={styles.SubmitEdit} onSubmit={submitEdit} type="submit">Edit</button>
-					</Link>
-					<Link onClick={change} to="/user">
-						<button className={styles.SubmitCancel} type="submit">Cancel</button>
-					</Link>
+					{!loading ? <button className={styles.SubmitCancel} type="submit">Edit</button>
+						: <button className={styles.SubmitCancel} type="submit">loading...</button>}
 				</div>
 			</form>
 		</div>
