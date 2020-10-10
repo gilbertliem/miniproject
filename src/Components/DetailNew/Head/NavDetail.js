@@ -3,6 +3,8 @@ import styles from '../DetailNew.module.css';
 import { NavLink } from 'react-router-dom';
 import Login from '../../Home/LoginFormik';
 import Register from '../../Home/RegisterFormik';
+import logo from '../../../Images/netflixxx.png';
+import azanirr from '../../../Images/azanirr.jpg';
 import axios from 'axios';
 
 
@@ -17,20 +19,21 @@ function NavDetail () {
 	
 	const prevCount = usePrevious(token);
 	
-	useEffect(() => {
-		if(token){
-			setUser(JSON.parse(localStorage.getItem('user')));
-		}
-	}, [])
 	
-	useEffect(() => {
-		
-		if(token !== prevCount){
-			if(token){
-				setUser(JSON.parse(localStorage.getItem('user')));
-			}
-		}
-	}, [token])
+	
+	useEffect( () => {
+		if(token){
+			axios.get("https://damp-dawn-67180.herokuapp.com/user/id", {
+				headers: {
+					access_token: token
+				}
+			})
+				.then(response => {
+				setUser(response.data.users);
+				console.log(response);
+			})
+	}
+	}, [])
 	
 	const onChange = (name, value ) => {
 		setToken(localStorage.getItem('token'));
@@ -79,10 +82,18 @@ function NavDetail () {
 	return(
 			<div className={styles.DivNav}>
 				<ul>
-					<li><NavLink to="/">Movies</NavLink></li>
-					<li><NavLink to="/about">About</NavLink></li>
+					<li><img src={logo} alt="logo" width="70px" heighti="52.5px"></img></li>
+					<li>
+						
+						<NavLink to="/">Movies</NavLink>
+					</li>
 					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="#">Register</NavLink></li>
-					: <li><NavLink to="/user">{user.username}</NavLink></li>}
+						: (
+						<div className={styles.ConUsername}>
+							<img src={user.profileImage} alt="propic" className={styles.Avatar}></img>
+							<li><NavLink to="/user">{user.nama}</NavLink></li>
+						</div>	
+						)}
 					{!token ? <li onClick={() => onChange('open', true)}><NavLink to="#">Login</NavLink></li>
 					: <li onClick={logout}><NavLink to="/">Logout</NavLink></li> }
 				</ul>
