@@ -6,14 +6,28 @@
 	background-color: black;
 	position: relative;
 }
+.ConUsername{
+	display:flex;
+	flex-direction:row;
+}
+
+.Avatar{
+	background: white;
+	border-radius: 75%;
+	position: relative;
+	width: 50px;
+	margin-right: 20px;
+	height: 50px;
+}
 
 .DivNav{
 	top:0;
 	left:0;
 	right: 0;
-	position: absolute;
-	z-index: 1;
-	background: transparent;
+	position: fixed;
+	z-index: 4;
+	background:black;
+	height: 80px;
 }
 
 .DivNav ul {
@@ -23,25 +37,39 @@
 	list-style: none;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: flex-start;
 	height: 100%;	
 	width: 100%;
+	position: relative;
 }
 
+.DivNav ul li:nth-child(2){
+	text-align: left;
+}
+
+.DivNav li:nth-child(1){
+	text-align: right;
+	width: 30%;
+	margin-right: 10px;
+}
+
+.DivNav li:nth-child(3){
+	text-align: right;
+}
+.DivNav li:nth-child(4){
+	width: 50%;
+}
 
 .DivNav li {
 	text-align: center;
 	margin: 10px 0;
 	box-sizing: border-box;
 	display: block;
-	width: 15%;	
+	width: 100%;	
 	}
 
-.DivNav li:nth-child(1){
-	text-align: left;
-	width: 55%;
-	margin-left: 100px;
-}
+
 
 .DivNav ul li a{
 	color: #ccc;
@@ -50,8 +78,7 @@
 	width: 100%;
 	box-sizing: border-box;
 	display: block;
-	letter-spacing: .25em;
-	text-transform: uppercase;
+	letter-spacing: .20em;
 	font-weight: bold;
 	}
 

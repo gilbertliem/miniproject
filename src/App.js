@@ -5,8 +5,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Cover from "./Components/Home/Cover";
 // import HomePage from "./Pages/HomePage";
 
+
+
+
+
+
+
 import Home from "./Pages/Home";
 import User from "./Pages/User";
+
 
 import Detail from "./Pages/Detail";
 import Footer from "./Components/Footer";
@@ -21,8 +28,8 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/detail" component={Detail} />
-          <Route path="/user" component={User} />
-          <Route path="/category/" component={Home} />
+		  <Route path="/user" component={User} />
+		  <Route path="/category" component={Home}/>
         </Switch>
         <Footer />
       </Router>

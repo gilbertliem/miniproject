@@ -9,8 +9,7 @@ import * as Yup from "yup";
 
 const initialValues = {
 		email: "",
-		fullname: "",
-		username: "",
+		nama: "",
 		password: "",
 	}
 
@@ -21,10 +20,7 @@ const schemaRegister = Yup.object().shape({
   password: Yup.string()
     .min(5, "Password must be 5 characters at minimum")
     .required("Password is required"),
-  fullname: Yup.string()
-    .min(8, "Your name should be 8 characters long")
-    .required("Name is required"),
-  username: Yup.string()
+  nama: Yup.string()
     .min(6, "Your username should be 6 characters long")
     .required("Username is required"),
 });
@@ -38,18 +34,15 @@ function Register (props) {
 	const onSubmit = async (values) => {
 		try {
 				setLoading(true);
-				const { email, fullname, username, password } = values;
-				const submit = await axios.post("https://appdoto.herokuapp.com/api/users/",
+				const { email, nama, password } = values;
+				const submit = await axios.post("https://damp-dawn-67180.herokuapp.com/register",
 			{
 				email,
-				fullname,
-				username,
+				nama,
 				password,
 			}
 				);
-				localStorage.setItem('token', submit.data.data.token);
 				onClose("register", false)
-				onChange('token', submit.data.data.token);
 				props.history.goBack();
 				setLoading(false)
 				console.log("submit", submit);
@@ -98,28 +91,15 @@ function Register (props) {
 							<div className={styles.FormControl}>
 							<label htmlFor="email">Fullname</label>
 							<input 
-								id="fullname"
-								name="fullname" 
+								id="nama"
+								name="nama" 
 								type="text" 
 								onBlur={formik.handleBlur}
-								placeholder="Your Fullname" 
+								placeholder="Your Name" 
 								onChange={formik.handleChange} 
-								value={formik.values.fullname}></input>
-							{formik.touched.fullname && formik.errors.fullname 
-									? <div className={styles.Error}>{formik.errors.fullname}</div> : null }
-							</div>
-							<div className={styles.FormControl}>
-							<label htmlFor="email">Username</label>
-							<input 
-								id="username"
-								name="username" 
-								type="text" 
-								onBlur={formik.handleBlur}
-								placeholder="Your Username" 
-								onChange={formik.handleChange} 
-								value={formik.values.username}></input>
-							{formik.touched.username && formik.errors.username
-									? <div className={styles.Error}>{formik.errors.email}</div> : null }
+								value={formik.values.name}></input>
+							{formik.touched.nama && formik.errors.nama
+									? <div className={styles.Error}>{formik.errors.nama}</div> : null }
 							</div>
 							<div className={styles.FormControl}>
 							<label htmlFor="password">Password</label>

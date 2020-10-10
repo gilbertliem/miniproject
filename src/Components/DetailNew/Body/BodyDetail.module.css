@@ -61,9 +61,37 @@
 }
 
 .Input{
-	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #333333;
+	padding: 0 10px;
+	background: #f7f7f7;
+	border: 0 solid black;
+	border-bottom: 2px solid #adadad;
 	height: 20vh;
   	width: 60vw;
+}
+
+.Submit{
+	margin: 140px 0 0 60px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	background: #ed3330;
+	width: 150px;
+	padding: 20px 0;
+	border-radius: 50px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+
+.Submit:hover{
+	background: #434343;
+	letter-spacing: 1px;	
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.4s ease 0s;
 }
 
 .Star{
@@ -74,6 +102,7 @@
 
 .RowInput2{
 	margin: 50px;
+	padding-top: 50px;
 	padding-bottom: 50px;
 	display: flex;
 	flex-direction: row;

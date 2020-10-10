@@ -32,15 +32,15 @@ function Login (props) {
 				setLoading(true);
 				const { email, password } = values;
 				const submit = await axios.post(
-					"https://appdoto.herokuapp.com/api/users/login",
+					"https://damp-dawn-67180.herokuapp.com/login",
 					{
 						email,
 						password,
 					}
 				);
-				localStorage.setItem('token', submit.data.data.token);
+				localStorage.setItem('token', submit.data.access_token);
 				onClose("open", false)
-				onChange('token', submit.data.data.token);
+				onChange('token', submit.data.access_token);
 				props.history.goBack();
 				setLoading(false)
 				console.log("submit", submit);
@@ -49,8 +49,6 @@ function Login (props) {
 			}
 	}
 	
-	
-		
 	const formik = useFormik({
 		initialValues,
 		onSubmit,
