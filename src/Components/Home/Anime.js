@@ -8,32 +8,30 @@ import ReactPaginate from "react-paginate";
 
 function Anime() {
   const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
 
   useEffect(() => {
-    fetchItem();
-  }, []);
+    fetchItem(currentPage);
+  }, [currentPage]);
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies]);
 
-  const fetchItem = () => {
+  const fetchItem = (page) => {
     axios
       .get(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77"
+        `https://api.themoviedb.org/3/discover/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
+          page + 1
+        }&with_genres=16`
       )
       .then((data) => {
         setMovies(data.data.results);
+        setTotalPage(data.data.total_pages);
         // console.log(data);
       });
   };
-
-  const handleChange = (e) => {
-    const selectedPage = e.selected + 1;
-    setCurrentPage(selectedPage);
-  };
-
   return (
     <>
       <div className={styles.category}>
@@ -58,34 +56,39 @@ function Anime() {
             <p>comedy</p>
           </Link>
         </div>
-        <div>
-          <div className={styles.bodies}>
-            {movies?.length > 0
-              ? movies.map((data) => {
-                  return (
-                    <Link to="/detail" key={data.id} className={styles.card}>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                        alt={data.original_title}
-                      />
-                      <div className={styles.info}>
-                        <h2>{data.original_title}</h2>
-                        <h4>Genre</h4>
-                      </div>
-                    </Link>
-                  );
-                })
-              : "Movie is not available."}
-          </div>
+        <div className={styles.bodies}>
+          {movies?.length > 0
+            ? movies.map((data) => {
+                return (
+                  <Link to="/detail" key={data.id} className={styles.card}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                      alt={data.original_title}
+                    />
+                    <div className={styles.info}>
+                      <h2>{data.original_title}</h2>
+                      <h4>Genre</h4>
+                    </div>
+                  </Link>
+                );
+              })
+            : "Movie is not available."}
         </div>
-        <div>
+        <div className={styles.paginate}>
           <ReactPaginate
             pageCount={1}
             pageRangeDisplayed={5}
             marginPagesDisplayed={1}
             previousLabel={"< "}
             nextLabel={" >"}
-            onPageChange={handleChange}
+            breakLabel={".."}
+            pageCount={totalPage}
+            onPageChange={(page) => setCurrentPage(page.selected)}
+            containerClassName={"one"}
+            pageClassName={"two"}
+            pageLinkClassName={"three"}
+            activeClassName={"four"}
+            activeLinkClassName={"five"}
           />
         </div>
       </div>

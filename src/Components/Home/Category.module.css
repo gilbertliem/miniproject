@@ -1,24 +1,26 @@
 .category {
   box-sizing: border-box;
   margin: 0;
-  padding: 10px 80px;
+  padding: 10px 50px;
   background-color: black;
   color: white;
   /* border: 1px solid white; */
 }
 
 .subcategories {
-  display: flex;
-  justify-content: left;
-  align-items: center;
+  text-align: center;
+}
+
+.subcategories a {
   text-decoration: none;
 }
 
 .subcategories p {
   background-color: rgba(219, 0, 0, 0.7);
+  padding: 10px 20px;
   border-radius: 10px;
-  padding: 5px 25px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   color: white;
   text-decoration: none;
 }
@@ -32,4 +34,40 @@
 .subcategories .active {
   background: #ffffff;
   color: black;
+}
+
+.bodies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.card {
+  transition: transform 0.5s;
+  margin: 10px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.041);
+}
+
+.card .info {
+  position: relative;
+  top: -20px;
+}
+
+.card .info h1 {
+  margin-bottom: -15px;
+}
+
+.card img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.paginate {
+  align-items: center;
 }

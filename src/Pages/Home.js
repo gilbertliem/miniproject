@@ -7,6 +7,7 @@ import Action from "../Components/Home/Action";
 import Adventure from "../Components/Home/Adventure";
 import Science from "../Components/Home/Science";
 import Comedy from "../Components/Home/Comedy";
+import Category from "../Components/Home/Category";
 import SearchPage from "../Components/Home/SearchPage";
 import Detail from "./Detail";
 import "./Home.css";
@@ -17,7 +18,7 @@ export default class Home extends Component {
       <>
         <Head />
         <Switch>
-          <Route exact path="/" component={All} />
+          <Route exact path="/" component={Category} />
           <Route path="/category/anime" component={Anime} />
           <Route path="/category/action" component={Action} />
           <Route path="/category/adventure" component={Adventure} />

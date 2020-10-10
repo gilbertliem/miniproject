@@ -67,3 +67,46 @@
 .card:hover {
   transform: translateY(-10px);
 }
+
+.paginate {
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+}
+
+.one {
+  background-color: purple;
+  border: purple;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.two {
+  background-color: blue;
+  border: blue;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.three {
+  background-color: red;
+  border: red;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.four {
+  background-color: yellow;
+  border: yellow;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.five {
+  background-color: green;
+  border: green;
+  cursor: pointer;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
