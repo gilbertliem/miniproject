@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-gsap": "^2.2.1",
+    "react-js-pagination": "^3.0.3",
     "react-lottie": "^1.2.3",
     "react-paginate": "^6.5.0",
     "react-pagination-js": "^2.0.0",

@@ -9,11 +9,11 @@ import {
 import axios from "axios";
 import styles from "./Category.module.css";
 // import MovieList from "./MovieList";
+import Pagination from "react-js-pagination";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HomeWrapper } from "./Category-styled";
-import ReactPaginate from "react-paginate";
 import { noimg } from "../../Images/noimg.jpg";
 
 function Category(props) {
@@ -53,9 +53,7 @@ function Category(props) {
       axios
         .get(
           `https://damp-dawn-67180.herokuapp.com/movie?page=1`
-          // `https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
-          //   page + 1
-          // }`
+          // `https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${page + 1}`
         )
         .then((data) => {
           setMovies(data.data.result);
@@ -83,6 +81,19 @@ function Category(props) {
     setOption(num);
     setCurrentPage = 1;
     console.log(option);
+  };
+
+  const nextpage = (pagesNumber) => {
+    axios
+      .get(`https://damp-dawn-67180.herokuapp.com/movie?page=` + pagesNumber)
+      .then((response) => {
+        // console.log(response.data.results);
+        setMovies(response.data.results);
+        setCurrentPage(pagesNumber);
+        setActive(pagesNumber);
+        console.log(movies);
+        window.scrollTo(0, 0);
+      });
   };
 
   let settings = {
@@ -158,19 +169,22 @@ function Category(props) {
                           data.poster_path
                             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
                             : `https://image.tmdb.org/t/p/w500${noimg}`
-                        }
-                        alt={data.title}
-                      />
-                      <div className={styles.info}>
-                        <h2>{data.title}</h2>
-                      </div> */}
+                          }
+                          alt={data.title}
+                          />
+                          <div className={styles.info}>
+                          <h2>{data.title}</h2>
+                        </div> */}
                       <img
                         src={data.poster ? data.poster : { noimg }}
                         alt={data.title}
 						onClick={() => props.detailsHandler(data.id)}
                       />
                       <div className={styles.info}>
-                        <h2>{data.title}</h2>
+                        <h3>{data.title}</h3>
+                        {/* {data.genre.map((genre) => (
+                          <h5>{genre}</h5>
+                        ))} */}
                       </div>
                     </Link>
                   </>
@@ -178,29 +192,39 @@ function Category(props) {
               })
             : "Movie is not available."}
         </div>
-        <div className={styles.paginate}>
-          <ReactPaginate
-            pageCount={1}
-            pageRangeDisplayed={5}
-            marginPagesDisplayed={1}
-            previousLabel={"< "}
-            nextLabel={" >"}
-            breakLabel={".."}
-            pageCount={totalPage}
-            onPageChange={(page) => setCurrentPage(page.selected)}
-            containerClassName={"one"}
-            pageClassName={"two"}
-            pageLinkClassName={"three"}
-            activeClassName={"four"}
-            activeLinkClassName={"five"}
-          />
-        </div>
+        <Pagination
+          className={styles.pagination}
+          activePage={active}
+          itemsCountPerPage={20}
+          totalItemsCount={10000}
+          pageRangeDisplayed={5}
+          onChange={nextpage.bind(this)}
+        />
       </div>
     </>
   );
 }
 
 export default Category;
+
+// import ReactPaginate from "react-paginate";
+//         <div className={styles.paginate}>
+//           <ReactPaginate
+//             pageCount={1}
+//             pageRangeDisplayed={5}
+//             marginPagesDisplayed={1}
+//             previousLabel={"< "}
+//             nextLabel={" >"}
+//             breakLabel={".."}
+//             pageCount={totalPage}
+//             onPageChange={(page) => setCurrentPage(page.selected)}
+//             containerClassName={"one"}
+//             pageClassName={"two"}
+//             pageLinkClassName={"three"}
+//             activeClassName={"four"}
+//             activeLinkClassName={"five"}
+//             />
+//         </div>
 
 // <Switch>
 //   <Route path="/movies/:category">
