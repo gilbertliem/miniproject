@@ -3,13 +3,13 @@ import styles from '../DetailNew.module.css';
 import NavDetail from './NavDetail';
 import Description from './Description';
 
-function Head () {
+function Head (props) {
 	
 	
 	return(
 		<div className={styles.Container}>
 			<NavDetail />
-			<Description />
+			<Description detail={props.detail}/>
 		</div>
 	)
 }

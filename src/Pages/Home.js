@@ -18,7 +18,9 @@ export default class Home extends Component {
       <>
         <Head />
         <Switch>
-          <Route exact path="/" component={Category} />
+		  <Route exact path="/">
+			<Category detailsHandler={this.props.detailsHandler} />
+		  </Route>
           <Route path="/category/anime" component={Anime} />
           <Route path="/category/action" component={Action} />
           <Route path="/category/adventure" component={Adventure} />

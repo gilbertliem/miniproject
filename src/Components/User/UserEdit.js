@@ -1,13 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styles from './User.module.css';
-import azanirr from '../../Images/azanirr.jpg';
 import back from '../../Images/background.jpg';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 function UserEdit (props) {
 	
-	const {user, page, change, edit} = props;
+	const {user, page, change} = props;
 	
 	const [userData, setUserData] = useState({
 			id: user.id,
@@ -19,7 +18,7 @@ function UserEdit (props) {
 			}
 	}),
 		[loading, setLoading] = useState(false),
-		[token, setToken] = useState(localStorage.getItem('token'));
+		[token] = useState(localStorage.getItem('token'));
 	
 	const changeValue = (name, e) => {
 			setUserData({
@@ -67,7 +66,7 @@ function UserEdit (props) {
 			}	
 		}
 	
-	const {profileImage, email, nama} = userData;
+	const {profileImage, nama} = userData;
 	
 	return(
 		<div className={styles.UserShow}>

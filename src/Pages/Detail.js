@@ -3,12 +3,15 @@ import React from 'react';
 import Head from '../Components/DetailNew/Head/Head';
 import Body from '../Components/DetailNew/Body/Body';
 
-function Detail () {
+function Detail (props) {
 	
 	return(
 		<div>
-			<Head />
-			<Body />
+			<Head detail={props.detail} />
+			<Body 
+				detailReview={props.detailReview}
+				detail={props.detail}
+				/>
 		</div>
 	)
 }
