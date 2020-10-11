@@ -19,13 +19,13 @@ import { noimg } from "../../Images/noimg.jpg";
 function Category(props) {
   const [categories, setCategories] = useState([]);
   const [movies, setMovies] = useState([]);
-  let [currentPage, setCurrentPage] = useState(0);
+  let [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   let [option, setOption] = useState(0);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    fetchCategory();
+    // fetchCategory();
     fetchMovies(currentPage);
   }, []);
 
@@ -33,26 +33,11 @@ function Category(props) {
     fetchMovies(currentPage);
   }, [option, currentPage]);
 
-  // useEffect(() => {
-  // }, [movies]);
-
-  const fetchCategory = () => {
-    axios
-      .get(
-        // `https://damp-dawn-67180.herokuapp.com/`
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=86ecab01572806c443d2d6f0ebec2d77&language=en-US`
-      )
-      .then((data) => {
-        setCategories(data.data.genres);
-        console.log(data);
-      });
-  };
-
-  const fetchMovies = (page) => {
+  const fetchMovies = () => {
     if (option === 0) {
       axios
         .get(
-          `https://damp-dawn-67180.herokuapp.com/movie?page=1`
+          `https://damp-dawn-67180.herokuapp.com/movie?page=${currentPage}`
           // `https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${page + 1}`
         )
         .then((data) => {
@@ -64,28 +49,29 @@ function Category(props) {
       console.log("masuk option");
       axios
         .get(
-          `https://api.themoviedb.org/3/discover/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
-            page + 1
-          }&with_genres=${option}`
+          `https://damp-dawn-67180.herokuapp.com/movie/category?&genre=${option}&page=${currentPage}`
+          // `https://api.themoviedb.org/3/discover/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
+          //   page + 1
+          // }&with_genres=${option}`
         )
         .then((data) => {
-          setMovies(data.data.results);
-          setTotalPage(data.data.total_pages);
+          setMovies(data.data);
+          // setTotalPage(data.data.total_pages);
           console.log(data);
         });
     }
     console.log(movies);
   };
 
-  let genre = (num) => {
-    setOption(num);
+  let genre = (e) => {
+    setOption(e);
     setCurrentPage = 1;
     console.log(option);
   };
 
   const nextpage = (pagesNumber) => {
     axios
-      .get(`https://damp-dawn-67180.herokuapp.com/movie?page=` + pagesNumber)
+      .get(`https://damp-dawn-67180.herokuapp.com/movie?page=${pagesNumber}`)
       .then((response) => {
         // console.log(response.data.results);
         setMovies(response.data.results);
@@ -93,7 +79,8 @@ function Category(props) {
         setActive(pagesNumber);
         console.log(movies);
         window.scrollTo(0, 0);
-      });
+      })
+      .catch((err) => console.log("error"));
   };
 
   let settings = {
@@ -148,13 +135,126 @@ function Category(props) {
         <HomeWrapper>
           <div className={styles.subcategories}>
             <Slider {...settings}>
-              {categories.map((category) => {
-                return (
-                  <NavLink to={`#`}>
-                    <p onClick={() => genre(category.id)}>{category.name}</p>
-                  </NavLink>
-                );
-              })}
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Animation
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Adventure
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Comedy
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Family
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Fantasy
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Crime
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Horror
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Thriller
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Drama
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  History
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Romance
+                </p>
+              </NavLink>
+              <NavLink to={`#`}>
+                <p
+                  onClick={(e) => {
+                    genre(e.target.textContent);
+                    // console.log(e.target.textContent);
+                  }}
+                >
+                  Sci-Fi
+                </p>
+              </NavLink>
             </Slider>
           </div>
         </HomeWrapper>
@@ -163,28 +263,18 @@ function Category(props) {
             ? movies.map((data) => {
                 return (
                   <>
-                    <Link to={"/detail/" + data.id} key={data.id} className={styles.card}>
-                      {/* <img
-                        src={
-                          data.poster_path
-                            ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-                            : `https://image.tmdb.org/t/p/w500${noimg}`
-                          }
-                          alt={data.title}
-                          />
-                          <div className={styles.info}>
-                          <h2>{data.title}</h2>
-                        </div> */}
+                    <Link
+                      to={"/detail/" + data.id}
+                      key={data.id}
+                      className={styles.card}
+                    >
                       <img
                         src={data.poster ? data.poster : { noimg }}
                         alt={data.title}
-						onClick={() => props.detailsHandler(data.id)}
+                        onClick={() => props.detailsHandler(data.id)}
                       />
                       <div className={styles.info}>
                         <h3>{data.title}</h3>
-                        {/* {data.genre.map((genre) => (
-                          <h5>{genre}</h5>
-                        ))} */}
                       </div>
                     </Link>
                   </>
@@ -195,10 +285,13 @@ function Category(props) {
         <Pagination
           className={styles.pagination}
           activePage={active}
-          itemsCountPerPage={20}
-          totalItemsCount={10000}
+          itemsCountPerPage={10}
+          totalItemsCount={120}
           pageRangeDisplayed={5}
-          onChange={nextpage.bind(this)}
+          onChange={(pagesNumber) => {
+            nextpage(pagesNumber);
+            console.log("test");
+          }}
         />
       </div>
     </>
@@ -206,6 +299,50 @@ function Category(props) {
 }
 
 export default Category;
+
+{
+  /* {data.genre.map((genre) => (
+  <h5>{genre}</h5>
+))} */
+}
+
+{
+  /* <img
+  src={
+    data.poster_path
+    ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+      : `https://image.tmdb.org/t/p/w500${noimg}`
+    }
+    alt={data.title}
+    />
+    <div className={styles.info}>
+    <h2>{data.title}</h2>
+  </div> */
+}
+
+// useEffect(() => {
+// }, [movies]);
+
+// const fetchCategory = () => {
+//   axios
+//     .get(
+//       // `https://damp-dawn-67180.herokuapp.com/`
+//       `https://api.themoviedb.org/3/genre/movie/list?api_key=86ecab01572806c443d2d6f0ebec2d77&language=en-US`
+//     )
+//     .then((data) => {
+//       setCategories(data.data.genres);
+//       console.log(data);
+//     });
+// };
+{
+  /* {categories.map((category) => {
+    return (
+      <NavLink to={`#`}>
+      <p onClick={() => genre(category.id)}>{category.name}</p>
+      </NavLink>
+    );
+  })} */
+}
 
 // import ReactPaginate from "react-paginate";
 //         <div className={styles.paginate}>

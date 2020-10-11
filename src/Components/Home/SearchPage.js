@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./SearchPage.module.css";
 import queryString from "query-string";
+import qs from "qs";
+import { noimg } from "../../Images/noimg.jpg";
 // import Head from "./Head";
 
 // ==================== //
@@ -11,6 +13,7 @@ export default class SearchPage extends Component {
   state = {
     movies: [],
     param: "",
+    search: "",
   };
 
   componentDidMount() {
@@ -36,18 +39,41 @@ export default class SearchPage extends Component {
     );
   };
 
-  searchHandler = (keyWords) => {
+  searchHandler = async (keyWords) => {
     this.setState({ movies: [] });
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&query=${keyWords}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ movies: data.results });
-        // console.log(data);
-        // console.log(this.state.movies);
+    console.log(keyWords);
+    try {
+      const search = this.state.search;
+      const data = qs.stringify({
+        search: keyWords,
       });
+      const submit = await axios({
+        method: "get",
+        url: "https://damp-dawn-67180.herokuapp.com/movie/search",
+        body: data,
+        headers: {
+          "count-type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+      });
+      console.log(submit);
+      this.setState({ movies: submit });
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  // searchHandler = (keyWords) => {
+  //   this.setState({ movies: [] });
+  //   fetch(
+  //     `https://damp-dawn-67180.herokuapp.com/movie/search?&query=${keyWords}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.setState({ movies: data.results });
+  //       // console.log(data);
+  //       // console.log(this.state.movies);
+  //     });
+  // };
 
   // RENDER
   render() {
@@ -57,21 +83,17 @@ export default class SearchPage extends Component {
         <div className={styles.category}>
           <h1>Search for: "{param}"</h1>
           <div className={styles.bodies}>
-            {this.state.movies.length > 0
+            {this.state.movies?.length > 0
               ? this.state.movies.map((data) => {
                   return (
                     <NavLink to="/detail" key={data.id} className={styles.card}>
-                      {data.poster_path ? (
-                        <img
-                          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                          alt={data.title}
-                        />
-                      ) : (
-                        <div className={styles.noimage}>No Image</div>
-                      )}
+                      <img
+                        src={data.poster ? data.poster : { noimg }}
+                        alt={data.title}
+                        onClick={() => this.props.detailsHandler(data.id)}
+                      />
                       <div className={styles.info}>
-                        <h1>Title</h1>
-                        <h4>Genre</h4>
+                        <h3>{data.title}</h3>
                       </div>
                     </NavLink>
                   );
