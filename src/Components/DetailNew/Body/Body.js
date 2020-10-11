@@ -1,11 +1,13 @@
 import React from 'react';
 import OptionDetail from './OptionDetail';
 
-function Body () {
+function Body (props) {
 	
 	return(
 		<div>
-			<OptionDetail />
+			<OptionDetail 
+				detailReview={props.detailReview}
+				detail={props.detail}/>
 		</div>
 	)
 }

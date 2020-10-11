@@ -16,7 +16,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { HomeWrapper } from "./Category-styled";
 import { noimg } from "../../Images/noimg.jpg";
 
-function Category() {
+function Category(props) {
   const [categories, setCategories] = useState([]);
   const [movies, setMovies] = useState([]);
   let [currentPage, setCurrentPage] = useState(0);
@@ -163,7 +163,7 @@ function Category() {
             ? movies.map((data) => {
                 return (
                   <>
-                    <Link to="/detail" key={data.id} className={styles.card}>
+                    <Link to={"/detail/" + data.id} key={data.id} className={styles.card}>
                       {/* <img
                         src={
                           data.poster_path
@@ -178,6 +178,7 @@ function Category() {
                       <img
                         src={data.poster ? data.poster : { noimg }}
                         alt={data.title}
+						onClick={() => props.detailsHandler(data.id)}
                       />
                       <div className={styles.info}>
                         <h3>{data.title}</h3>

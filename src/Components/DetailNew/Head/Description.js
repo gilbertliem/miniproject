@@ -2,8 +2,12 @@ import React from 'react';
 import styles from './Description.module.css';
 import Star from "../../../Images/star.png";
 import Bintang from "../../../Images/bintang.png";
+import ReactStars from 'react-stars'
+import {Link} from 'react-router-dom';
 
-function Description (){
+function Description (props){
+	
+	const {detail} = props;
 	
 	return(
 		<div className={styles.ContainerSlide}>
@@ -17,17 +21,20 @@ function Description (){
 				</ul>
 			</div>
 			<div className={styles.ContainerDesc}>
-				<h1>MOVIES TITLE(2020)</h1>
-				<img src={Star} alt="rating" />
-                <img src={Star} alt="rating" />
-                <img src={Star} alt="rating" />
-                <img src={Star} alt="rating" />
-                <img src={Bintang} alt="" />
-				<p>Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart? </p>
+				<h1>{detail.title}</h1>
+				<ReactStars
+  					count={10}
+					size={24}
+					edit={false}
+					value={detail.rate}
+ 					color2={'#ffd700'} />
+				<p>{detail.synopsis}</p>
+				<a href={detail.trailer}>
 				<button className={styles.button}>Watch Trailer
 					<div className={styles.button__horizontal}></div>
 					<div className={styles.button__vertical}></div>
 				</button>
+				</a>
 			</div>
 		</div>
 	)

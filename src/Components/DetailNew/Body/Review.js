@@ -3,32 +3,66 @@ import kaka from "../../../Images/ricardo.png";
 import styles from "./BodyDetail.module.css";
 import StarRatings from 'react-star-ratings';
 import { useFormik } from "formik";
+import qs from 'qs';
 import axios from 'axios';
 import * as Yup from "yup";
 
 // ==================== //
 const initialValues = {
-		text: "",
-		rating: 0
+		comment: ""
 	}
 
 const schemaLogin = Yup.object().shape({
-	 	 text: Yup.string()
-			.required("Text is required"),
-	 	 rating: Yup.string()
-			.min(0.1, "You must set rating star")
+	 	 comment: Yup.string()
+			.required("Text is required")
 
 	});
 
-function Review () {
+function Review (props) {
 	
 	const [token] = useState(localStorage.getItem('token')),
-		  [user, setUser] = useState([]);
+		  [user, setUser] = useState([]),
+		  [loading, setLoading] = useState(false),
+		  [share] = useState(true),
+		  [review, setReview] = useState([]),
+		  [rating, setRating] = useState(0);
+	
+	const onSubmit = async (values) => {
+		try {
+			const {comment} = values;
+			const data = qs.stringify({
+				comment: comment,
+				rating: rating,
+				share: share
+			})
+			console.log(data);
+			const submit = await axios({
+						method: 'post',
+						url: "https://damp-dawn-67180.herokuapp.com/review/" + props.detail.id,
+						data: data,
+						headers: {
+								access_token : token,
+								'content-type': 'application/x-www-form-urlencoded;charset=utf-8'	
+						},
+					  });	
+				setRating(0);
+				console.log(submit);
+			} catch (error){
+				console.log(error);
+			}
+	}
+	
+	const changeRating = ( newRating ) => {
+      setRating(newRating)
+    }
+	
 	
 	const formik = useFormik({
 		initialValues,
+		onSubmit,
 		validationSchema: schemaLogin
 	})
+	
 
 	useEffect( () => {
 		if(token){
@@ -44,30 +78,39 @@ function Review () {
 	}
 	}, [])
 	
+	useEffect( () => {
+		if(token){
+			axios.get("https://damp-dawn-67180.herokuapp.com/movie/detail/" + props.detail.id)
+				.then(response => {
+				setReview(response.data.reviewmovie);
+				console.log(response);
+			})
+	}
+	}, [])
+		
 	let userReview = ""
 	
 	if(token){
 		userReview = (
-		<form>
+		<form onSubmit={formik.handleSubmit}>
 			<div className={styles.RowInput}>
 				<div>
-					<h2 name="name">{user.nama}</h2>
+					<h2 name="nama">{user.nama}</h2>
 					<StarRatings
-						rating={formik.values.rating}
+						rating={rating}
 						starRatedColor="blue"
-						changeRating={formik.handleChange}
-						numberOfStars={5}
-						value={formik.values.rating}
-						starDimension={"30px"}
+						changeRating={changeRating}
+						numberOfStars={10}
+						starDimension={"20px"}
 						name='rating'/>
 				</div>
         		<div>
 					<input
 						type="text"
 						placeholder="Leave a review"
-						name="text"
+						name="comment"
 						onChange={formik.handleChange}
-						value={formik.values.text}
+						value={formik.values.comment}
 						className={styles.Input} />
          		</div>
 				<div>
@@ -80,22 +123,28 @@ function Review () {
     return (
 		<div className={styles.BodyReview}>
         	{userReview}
-			<div className={styles.RowInput2}>
+				{
+				review.length > 0 && review !== null ?
+				review.map(review => {
+				return(
+				<div className={styles.RowInput2}>
 				<div>
 					<img src={kaka} alt="Kaka" />
 				</div>
 				<div>
-					<h2>Ricardo Kaka</h2>
+					<h2>{review.UserId}</h2>
+					<StarRatings
+						rating={review.rating}
+						starRatedColor="blue"
+						numberOfStars={10}
+						starDimension={"30px"}
+						name='rating'/>
 					<p>
-					  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-					  nisi ut aliquip ex ea commodo consequat.Ut enim ad minim veniam,
-					  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-					  commodo consequat
+					  {review.comment}
 					</p>
 				</div>
-			</div>
+			</div>)
+			}) : <h1>There is no review</h1>}
       	</div>
     );
   }

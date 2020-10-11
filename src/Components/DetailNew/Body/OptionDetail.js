@@ -4,7 +4,7 @@ import { Route, Link, Switch} from 'react-router-dom';
 import Overview from './Overview';
 import Review from './Review';
 
-function OptionDetail () {
+function OptionDetail (props) {
 	
 	const [pages, setPages] = useState(false)
 	
@@ -28,10 +28,14 @@ function OptionDetail () {
 						<polyline points="8 1 12 5 8 9"></polyline>
 					</svg>
 				</Link>
-				{!pages && <Overview />}
+				{!pages && <Overview detail={props.detail} />}
 			<Switch>
-					<Route path="/detail/review" component={Review} />
-					<Route path="/detail/overview" component={Overview} />
+					<Route path="/detail/review">
+						<Review detailReview={props.detailReview} detail={props.detail} />
+					</Route>
+					<Route path="/detail/overview">
+						<Overview detail={props.detail}/>
+					</Route>
 			</Switch>
 		</div>
 	)

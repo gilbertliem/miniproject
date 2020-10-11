@@ -67,8 +67,9 @@
 	background: #f7f7f7;
 	border: 0 solid black;
 	border-bottom: 2px solid #adadad;
-	height: 20vh;
-  	width: 60vw;
+	font-size: 20px;
+	height: 200px;
+  	width: 1200px;
 }
 
 .Submit{
