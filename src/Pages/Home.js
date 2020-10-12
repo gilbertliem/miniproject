@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import Head from "../Components/Home/Head";
-import All from "../Components/Home/All";
 import Anime from "../Components/Home/Anime";
 import Action from "../Components/Home/Action";
 import Adventure from "../Components/Home/Adventure";
@@ -9,7 +8,6 @@ import Science from "../Components/Home/Science";
 import Comedy from "../Components/Home/Comedy";
 import Category from "../Components/Home/Category";
 import SearchPage from "../Components/Home/SearchPage";
-import Detail from "./Detail";
 import "./Home.css";
 
 export default class Home extends Component {

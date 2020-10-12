@@ -38,6 +38,17 @@
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
+.EditUser{
+	margin-right: 100px;
+}
+
+.RowInputEdit{
+	margin: 0 50px 50px 50px;
+	display: flex;
+	padding: 50px 0;
+	flex-direction: row;
+}
+
 .RowInput{
 	margin: 50px;
 	padding-top: 50px;
@@ -54,7 +65,7 @@
 }
 
 .RowInput img:nth-child(1){
-	border-radius: 5px;
+	border-radius: 75%;
 	height: 100px;
  	width: 100px;
  	margin-right: 10px;
@@ -69,7 +80,19 @@
 	border-bottom: 2px solid #adadad;
 	font-size: 20px;
 	height: 200px;
-  	width: 1200px;
+  	width: 1000px;
+}
+
+.InputEdit{
+	box-sizing: border-box;
+	border: 1px solid #333333;
+	padding: 0 10px;
+	background: #f7f7f7;
+	border: 0 solid black;
+	border-bottom: 2px solid #adadad;
+	font-size: 20px;
+	height: 200px;
+  	width: 800px;
 }
 
 .Submit{
@@ -95,10 +118,38 @@
 	transition: all 0.4s ease 0s;
 }
 
+.SubmitEdit{
+	margin: 140px 0 0 60px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: white;
+	background: #FFA500;
+	width: 150px;
+	padding: 20px 0;
+	border-radius: 50px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+
+.SubmitEdit:hover{
+	background: #434343;
+	letter-spacing: 1px;	
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.4s ease 0s;
+}
+
 .Star{
 	height: 20px;
   	width: 20px;
  	margin: 15px 0;
+}
+
+.RowShow{
+	display: flex;
+	flex-direction: row;
 }
 
 .RowInput2{
@@ -106,10 +157,10 @@
 	padding-top: 50px;
 	padding-bottom: 50px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 }
 .RowInput2 div:nth-child(1){
-	margin-right: 100px;
+	margin-right: 50px;
 }
 
 .RowInput2 h2{
@@ -123,12 +174,20 @@
 	padding-right: 200px;
 	text-align: justify;
 }
+.Button{
+	margin-left: 350px;
+}
+
 
 .RowInput2 img:nth-child(1){
-	border-radius: 5px;
+	border-radius: 75%;
 	height: 100px;
  	width: 100px;
  	margin-right: 10px;
+}
+
+.RowInput2 div:nth-child(2){
+	
 }
 
 

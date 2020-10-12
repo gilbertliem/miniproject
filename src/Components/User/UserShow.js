@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './User.module.css';
-import azanirr from '../../Images/azanirr.jpg';
 import back from '../../Images/background.jpg';
 import { Link, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -10,16 +9,12 @@ import EditUser from './UserEdit';
 function UserShow () {
 	
 	const [user, setUser] = useState([]),
-		  [token, setToken] = useState(localStorage.getItem('token')),
-		  [page, setPage] = useState(false);
+		  [token] = useState(localStorage.getItem('token')),
+		  [page, setPage] = useState(false),
+		  [trigger, setTrigger] = useState(false);
 	
-	const edit = (name, value) => {
-		const newData = setUser({
-			...user,
-			[name]: value
-		})
-		console.log(user);
-		
+	const triggerHandler = () => {
+		setTrigger(true);
 	}
 	
 	useEffect( () => {
@@ -34,7 +29,21 @@ function UserShow () {
 				console.log(response);
 			})
 	}
-	}, [])
+	}, [token])
+	
+	useEffect( () => {
+		if(token){
+			axios.get("https://damp-dawn-67180.herokuapp.com/user/id", {
+				headers: {
+					access_token: token
+				}
+			})
+				.then(response => {
+				setUser(response.data.users);
+				console.log(response);
+			})
+	}
+	}, [trigger, token])
 	
 	const onChange = () => {
 		setPage(!page);
@@ -74,7 +83,7 @@ function UserShow () {
 					user={user}
 					page={page}
 					change={onChange}
-					edit={edit}
+					trigger={triggerHandler}
 					/>
 		  	</Route>
 			</Switch>

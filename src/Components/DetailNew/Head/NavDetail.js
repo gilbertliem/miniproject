@@ -1,10 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from '../DetailNew.module.css';
 import { NavLink } from 'react-router-dom';
 import Login from '../../Home/LoginFormik';
 import Register from '../../Home/RegisterFormik';
 import logo from '../../../Images/netflixxx.png';
-import azanirr from '../../../Images/azanirr.jpg';
 import axios from 'axios';
 
 
@@ -16,10 +15,6 @@ function NavDetail () {
 			  open: false,
 			  register: false
 		  })
-	
-	const prevCount = usePrevious(token);
-	
-	
 	
 	useEffect( () => {
 		if(token){
@@ -33,9 +28,9 @@ function NavDetail () {
 				console.log(response);
 			})
 	}
-	}, [])
+	}, [token])
 	
-	const onChange = (name, value ) => {
+	const onChange = ( name, value ) => {
 		setToken(localStorage.getItem('token'));
     	setModal({ 
 			[name] : value
@@ -103,15 +98,5 @@ function NavDetail () {
 	)
 }
 
-	function usePrevious(value) {
-		
-		const ref = useRef();
-
-   		useEffect(() => {
-    		ref.current = value;
-  		});
-
-		return ref.current;
-}
 
 export default NavDetail;

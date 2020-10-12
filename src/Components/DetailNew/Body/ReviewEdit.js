@@ -1,40 +1,38 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from 'react';
 import styles from "./BodyDetail.module.css";
-import ShowReview from "./ShowReview";
 import StarRatings from 'react-star-ratings';
 import { useFormik } from "formik";
+import { withRouter } from 'react-router-dom';
 import qs from 'qs';
 import axios from 'axios';
 import * as Yup from "yup";
 
-// ==================== //
-const initialValues = {
-		comment: ""
+
+function ReviewEdit (props) {
+	
+	const {edit, trigger, review, detail} = props;
+	
+	const initialValues = {
+		comment: review.comment
 	}
 
-const schemaLogin = Yup.object().shape({
+	const schemaLogin = Yup.object().shape({
 	 	 comment: Yup.string()
 			.required("Text is required")
 
 	});
 
-function Review (props) {
 	
 	const [token] = useState(localStorage.getItem('token')),
 		  [user, setUser] = useState([]),
 		  [loading, setLoading] = useState(false),
 		  [share] = useState(true),
-		  [review, setReview] = useState([]),
-		  [rating, setRating] = useState(0),
-		  [trigger, setTrigger] = useState(false),
-		  [edit, setEdit] = useState(false)
+		  [rating, setRating] = useState(review.rating);
 	
-	const triggerHandler = () => {
-		setTrigger(!trigger)
-	}
 	
 	const onSubmit = async (values) => {
 		try {
+			console.log(review);
 			setLoading(true);
 			const {comment} = values;
 			const data = qs.stringify({
@@ -44,8 +42,8 @@ function Review (props) {
 			})
 			console.log(data);
 			const submit = await axios({
-						method: 'post',
-						url: "https://damp-dawn-67180.herokuapp.com/review/" + props.detail.id,
+						method: 'put',
+						url: "https://damp-dawn-67180.herokuapp.com/review/edit/" + review.id,
 						data: data,
 						headers: {
 								access_token : token,
@@ -53,25 +51,19 @@ function Review (props) {
 						},
 					  });	
 				setRating(0);
-				triggerHandler();
+				edit(detail.id);
 				setLoading(false);
+				props.history.push('/detail/review/');
+				trigger();
 				console.log(submit);
 			} catch (error){
 				console.log(error);
 			}
 	}
 	
-	
-	
 	const changeRating = ( newRating ) => {
-      	setRating(newRating)
+      setRating(newRating)
     }
-	
-	const editToggler = (id) =>{
-		if(id){
-			setEdit(!edit);
-		}
-	}
 	
 	const formik = useFormik({
 		initialValues,
@@ -79,7 +71,6 @@ function Review (props) {
 		validationSchema: schemaLogin
 	})
 	
-
 	useEffect( () => {
 		if(token){
 			axios.get("https://damp-dawn-67180.herokuapp.com/user/id", {
@@ -94,34 +85,16 @@ function Review (props) {
 	}
 	}, [token])
 	
-	useEffect( () => {
-		if(token){
-			axios.get("https://damp-dawn-67180.herokuapp.com/movie/detail/" + props.detail.id)
-				.then(response => {
-				setReview(response.data.reviewmovie);
-				console.log(response);
-			})
+	const cancel = () => {
+		props.history.goBack();
 	}
-	}, [token, props.detail.id])
 	
-	useEffect( () => {
-		if(token){
-			axios.get("https://damp-dawn-67180.herokuapp.com/movie/detail/" + props.detail.id)
-				.then(response => {
-				setReview(response.data.reviewmovie);
-				console.log(response);
-			})
-	}
-	}, [trigger, props.detail.id, token])
-		
-	let userReview = ""
 	
-	if(token && !edit){
-		userReview = (
-		<form onSubmit={formik.handleSubmit}>
-			<div className={styles.RowInput}>
-				<div>
-					<img src={user.profileImage} alt={user.nama} />
+	return(
+		<div>
+			<form onSubmit={formik.handleSubmit}>
+			<div className={styles.RowInputEdit}>
+				<div className={styles.EditUser}>
 					<h2 name="nama">{user.nama}</h2>
 					<StarRatings
 						rating={rating}
@@ -138,41 +111,19 @@ function Review (props) {
 						name="comment"
 						onChange={formik.handleChange}
 						value={formik.values.comment}
-						className={styles.Input} />
+						className={styles.InputEdit} />
          		</div>
 				<div>
 					{!loading ? <button className={styles.Submit} type="submit">Submit</button>
 						: <button className={styles.Submit} type="submit">loading...</button> }
 				</div>
+				<div> 
+						<button className={styles.Submit} onClick={cancel} type="submit">Cancel</button>
+				</div>
        		</div>
 		</form>
-	)} else {
-			userReview  = null;
-		}
-	
-	let showReview = (
-				<div>
-				{userReview}
-				{review.length > 0 && review !== null ?
-					review.map(review => {
-					return(
-						<ShowReview
-							detail={props.detail}
-							user={user}
-							key={review.id}
-							review={review}
-							edit={edit}
-							editToggler={editToggler}
-							trigger={triggerHandler}/>
-					)	
-				}) : <h1>There is no review</h1>}
-				</div>)
-	
-    return (
-		<div className={styles.BodyReview}>
-        	{showReview}
-      	</div>
-    );
-  }
+		</div>
+	)
+}
 
-export default Review;    
+export default withRouter(ReviewEdit);
