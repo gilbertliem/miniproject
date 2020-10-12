@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './pagination.css';
 import { HomeWrapper } from "./Category-styled";
 
 
