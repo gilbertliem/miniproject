@@ -15,7 +15,7 @@ class Head extends Component {
         <Navbar />
         <Logo />
         <Particle />
-        <SearchFilm />
+        <SearchFilm searchHandler={this.props.searchHandler}/>
       </div>
     );
   }
