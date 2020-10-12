@@ -14,7 +14,7 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        <Head />
+        <Head searchHandler={this.props.searchHandler}/>
         <Switch>
 		  <Route exact path="/">
 			<Category detailsHandler={this.props.detailsHandler} />

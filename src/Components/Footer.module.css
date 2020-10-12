@@ -2,6 +2,11 @@ footer {
   font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
+	background: #870000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
   align-items: center;
   flex-direction: column;
   padding: 20px 10px;
@@ -17,15 +22,20 @@ footer {
 }
 
 
+.row img{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
 .coltwo p {
- 	margin: 5px 10px;
+ 	margin: 5px 10px 40px 10px;
 	letter-spacing: 0.1em;
 	font-size: 20px;
 }
 
 .Copy {
 	letter-spacing: 0.1em;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 /* footer .row {

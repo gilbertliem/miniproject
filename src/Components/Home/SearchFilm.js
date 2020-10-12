@@ -12,18 +12,17 @@ class SearchFilm extends Component {
   };
 
   submit = (e) => {
-    e.preventDefault();
-    if (this.state.input === "") {
-      console.log("isi input");
-    } else {
-      // this.props.searchHandler(this.state.input)
-      this.setState({ input: "" });
-      this.props.history.push({
-        pathname: `/category/search`,
-        search: `?param=${this.state.input}`,
-      });
-    }
-  };
+		e.preventDefault();
+		if(this.state.input === ""){
+			console.log('isi input');
+		} else{
+		this.props.searchHandler(this.state.input)
+		e.target.value = "";
+		this.setState({input: e.target.value})
+		this.props.history.push(`/search/${this.state.input}`)	
+		}
+	} 
+
   render() {
     return (
       <div className={styles.ContainerSearch}>

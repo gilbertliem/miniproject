@@ -14,18 +14,35 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import User from "./Pages/User";
 import axios from "axios";
-
+import Search from "./Components/Home/SearchPage";
 import Detail from "./Pages/Detail";
 import Footer from "./Components/Footer";
-
 // ==================== //
 
 export default class App extends Component {
 	
 	state = {
 		detail: [],
-		detailReview: []
+		detailReview: [],
+		searchMovies: [],
+		input: ""
 	}
+
+	searchHandler = async (keyWords) => {
+		console.log(keyWords);
+		try {
+		  this.setState({input: keyWords});
+		  const submit = await axios({
+			method: "get",
+			url: "https://damp-dawn-67180.herokuapp.com/movie/search?search=" + keyWords,
+		  });
+		  console.log(submit);
+		  this.setState({ searchMovies: submit.data });
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
+
 	
 	detailsHandler = (id) =>{
 		axios.get('https://damp-dawn-67180.herokuapp.com/movie/detail/' + id)
@@ -46,8 +63,18 @@ export default class App extends Component {
       <Router>
         <Switch>
 		  <Route exact path="/">
-		  	<Home detailsHandler={this.detailsHandler} />
+		  	<Home 
+				searchHandler={this.searchHandler}
+				detailsHandler={this.detailsHandler}
+				/>
 		  </Route>
+			<Route path="/search/:search">
+				<Search 
+					input={this.state.input}
+					detailsHandler={this.detailsHandler}
+					searchHandler={this.searchHandler}
+					search={this.state.searchMovies}/>
+			</Route>
           <Route path="/detail/:id">
 			<Detail 
 				detailReview={this.state.detailReview}

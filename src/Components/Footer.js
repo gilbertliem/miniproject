@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import brand from "../Images/brand.png";
-import google from "../Images/google.png";
-import apple from "../Images/apple.png";
-import facebook from "../Images/face.png";
-import pinterest from "../Images/pinterest.png";
-import instagram from "../Images/insta.png";
+import brand from "../Images/netflixxx.png";
 import styles from "./Footer.module.css";
 
 export default class Footer extends Component {
@@ -12,7 +7,9 @@ export default class Footer extends Component {
     return (
       <>
         <footer>
-          <div className={styles.row}>
+        	<div className={styles.row}>
+				<img src={brand} alt="logo" width="140px" height="105px"></img>
+			</div>
             <div className={styles.coltwo}>
               <p>About Us</p>
               <p>Blog</p>
@@ -20,8 +17,9 @@ export default class Footer extends Component {
               <p>Career</p>
               <p>Media</p>
             </div>
-          </div>
-          <p className={styles.Copy}>Copyright © 2020. All Rights Reserved</p>
+          	<div>
+          		<p className={styles.Copy}>Copyright © 2020. All Rights Reserved</p>
+			</div>
         </footer>
       </>
     );

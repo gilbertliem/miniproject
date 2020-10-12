@@ -9,6 +9,7 @@
 
 .bodies {
   display: grid;
+  padding: 0 300px;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
 
