@@ -39,6 +39,12 @@
 .bodies {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  /* .card {
+    transition: transform: 1s;;
+    img {
+      width: 100%;
+    }
+  } */
 }
 
 .card {

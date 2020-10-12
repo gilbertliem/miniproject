@@ -49,13 +49,13 @@ function Category(props) {
       console.log("masuk option");
       axios
         .get(
-          `https://damp-dawn-67180.herokuapp.com/movie/category?&genre=${option}&page=${currentPage}`
+          `https://damp-dawn-67180.herokuapp.com/movie/category?page=${currentPage}&genre=${option}`
           // `https://api.themoviedb.org/3/discover/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
           //   page + 1
           // }&with_genres=${option}`
         )
         .then((data) => {
-          setMovies(data.data);
+          setMovies(data.data.result);
           // setTotalPage(data.data.total_pages);
           console.log(data);
         });
@@ -268,11 +268,19 @@ function Category(props) {
                       key={data.id}
                       className={styles.card}
                     >
-                      <img
-                        src={data.poster ? data.poster : { noimg }}
-                        alt={data.title}
-                        onClick={() => props.detailsHandler(data.id)}
-                      />
+                      {data.poster ? (
+                        <img
+                          src={data.poster}
+                          alt={data.title}
+                          onClick={() => props.detailsHandler(data.id)}
+                        />
+                      ) : (
+                        <img
+                          src={noimg}
+                          alt={data.title}
+                          onClick={() => props.detailsHandler(data.id)}
+                        />
+                      )}
                       <div className={styles.info}>
                         <h3>{data.title}</h3>
                       </div>
