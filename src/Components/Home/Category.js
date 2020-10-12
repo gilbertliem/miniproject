@@ -7,21 +7,15 @@ import Pagination from "react-js-pagination";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './pagination.css';
+import "./pagination.css";
 import { HomeWrapper } from "./Category-styled";
 
-
 function Category(props) {
-
   const [movies, setMovies] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   let [option, setOption] = useState(0);
   const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    fetchMovies(currentPage);
-  }, [option, currentPage]);
 
   const fetchMovies = () => {
     if (option === 0) {
@@ -52,6 +46,10 @@ function Category(props) {
     }
     console.log(movies);
   };
+
+  useEffect(() => {
+    fetchMovies(currentPage);
+  }, [option, currentPage]);
 
   let genre = (e) => {
     setOption(e);
@@ -255,7 +253,7 @@ function Category(props) {
                   <div key={data.id} className={styles.card}>
                     <Link
                       to={"/detail/" + data.id}
-				  	  className={styles.card}
+                      className={styles.card}
                       onClick={() => props.detailsHandler(data.id)}
                     >
                       {data.poster ? (
