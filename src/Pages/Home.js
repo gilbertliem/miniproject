@@ -16,15 +16,15 @@ export default class Home extends Component {
       <>
         <Head />
         <Switch>
-		  <Route exact path="/">
-			<Category detailsHandler={this.props.detailsHandler} />
-		  </Route>
+          <Route exact path="/">
+            <Category detailsHandler={this.props.detailsHandler} />
+          </Route>
+          <Route path="/category/search" component={SearchPage} />
           <Route path="/category/anime" component={Anime} />
           <Route path="/category/action" component={Action} />
           <Route path="/category/adventure" component={Adventure} />
           <Route path="/category/science" component={Science} />
           <Route path="/category/comedy" component={Comedy} />
-          <Route path="/category/search" component={SearchPage} />
         </Switch>
       </>
     );

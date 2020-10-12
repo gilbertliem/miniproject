@@ -282,7 +282,11 @@ function Category(props) {
                         />
                       )}
                       <div className={styles.info}>
-                        <h3>{data.title}</h3>
+                        <div className={styles.titlegenre}>
+                          <h3>{data.title}</h3>
+                          <h6>{data.genre}</h6>
+                        </div>
+                        <span className={styles.genre}>{data.rate}</span>
                       </div>
                     </Link>
                   </>

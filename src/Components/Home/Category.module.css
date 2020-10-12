@@ -39,12 +39,6 @@
 .bodies {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  /* .card {
-    transition: transform: 1s;;
-    img {
-      width: 100%;
-    }
-  } */
 }
 
 .card {
@@ -58,15 +52,27 @@
 
 .card .info {
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
-  /* position: relative;
-  top: -20px; */
+  padding: 0 10px;
 }
 
-/* .card .info h1 {
-  margin-bottom: -15px;
-} */
+.card .info .titlegenre {
+  padding: 0 10px;
+}
+
+.card .info h6 {
+  font-style: italic;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.card .info .genre {
+  background-color: rgba(255, 255, 255, 0.151);
+  padding: 10px;
+  border-radius: 100%;
+  font-weight: bold;
+}
 
 .card img {
   border-radius: 10px;
