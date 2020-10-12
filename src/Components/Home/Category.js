@@ -252,11 +252,10 @@ function Category(props) {
           {movies?.length > 0
             ? movies.map((data) => {
                 return (
-                  <>
+                  <div key={data.id} className={styles.card}>
                     <Link
                       to={"/detail/" + data.id}
-                      key={data.id}
-                      className={styles.card}
+				  	  className={styles.card}
                       onClick={() => props.detailsHandler(data.id)}
                     >
                       {data.poster ? (
@@ -272,7 +271,7 @@ function Category(props) {
                         <span className={styles.genre}>{data.rate}</span>
                       </div>
                     </Link>
-                  </>
+                  </div>
                 );
               })
             : "Movie is not available."}

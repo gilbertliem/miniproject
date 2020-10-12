@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Description.module.css';
 import ReactStars from 'react-stars';
 import moment from 'moment';
@@ -6,6 +6,9 @@ import moment from 'moment';
 function Description (props){
 	
 	const {detail} = props;
+	
+	const [rate, setRate] = useState(Number(detail.id))
+	
 	
 	return(
 		<div className={styles.ContainerSlide}>
@@ -25,7 +28,7 @@ function Description (props){
   					count={10}
 					size={30}
 					edit={false}
-					value={detail.rate}
+					value={rate}
  					color2={'#ffd700'} />
 				<p>{detail.synopsis}</p>
 				<a href={detail.trailer}>
