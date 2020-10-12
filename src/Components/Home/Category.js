@@ -267,19 +267,12 @@ function Category(props) {
                       to={"/detail/" + data.id}
                       key={data.id}
                       className={styles.card}
+                      onClick={() => props.detailsHandler(data.id)}
                     >
                       {data.poster ? (
-                        <img
-                          src={data.poster}
-                          alt={data.title}
-                          onClick={() => props.detailsHandler(data.id)}
-                        />
+                        <img src={data.poster} alt={data.title} />
                       ) : (
-                        <img
-                          src={noimg}
-                          alt={data.title}
-                          onClick={() => props.detailsHandler(data.id)}
-                        />
+                        <div className={styles.noimage}>No Image</div>
                       )}
                       <div className={styles.info}>
                         <div className={styles.titlegenre}>
