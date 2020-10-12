@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './BodyDetail.module.css';
+import moment from 'moment';
 
 // ==================== //
 
@@ -20,7 +21,7 @@ function Overview (props) {
 				<h1>Movie Info</h1>
 				<hr className={styles.Hr}></hr>
 				<p>Genre: {detail.genre}</p>
-				<p>Release Date: {detail.released_date}</p>
+				<p>Release Date: {moment(detail.realeased_date).format("MMMM, D, YYYY")}</p>
 				<p>Director: {detail.director}</p>
 				<p>Cast: {detail.cast}</p>
 			</div>

@@ -27,7 +27,7 @@ const schemaRegister = Yup.object().shape({
 
 function Register (props) {
 	
-	const { open, onChange, onClose, switchModal } = props;
+	const { open, onClose, switchModal } = props;
 	
 	const [loading, setLoading] = useState(false);	
 	

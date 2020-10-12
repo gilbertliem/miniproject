@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function UserEdit (props) {
 	
-	const {user, page, change} = props;
+	const {user, trigger, change} = props;
 	
 	const [userData, setUserData] = useState({
 			id: user.id,
@@ -56,15 +56,21 @@ function UserEdit (props) {
 								access_token : token
 						},
 					  });
-					setUserData(submit.data)
 					console.log(userData)
+					console.log("submit EDIT" + submit);
 					change();
 					props.history.push('/user');
 					setLoading(false)
+					trigger();
 				} catch (error) {
 					console.log("error", error);
 			}	
 		}
+	
+	const cancel = () => {
+		props.history.goBack();
+		change();
+	}
 	
 	const {profileImage, nama} = userData;
 	
@@ -88,6 +94,7 @@ function UserEdit (props) {
 						: <button className={styles.SubmitCancel} type="submit">loading...</button>}
 				</div>
 			</form>
+			<button className={styles.SubmitCan} onClick={cancel}>Cancel</button>
 		</div>
 	)
 }

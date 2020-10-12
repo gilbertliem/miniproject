@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from './Description.module.css';
-import Star from "../../../Images/star.png";
-import Bintang from "../../../Images/bintang.png";
-import ReactStars from 'react-stars'
-import {Link} from 'react-router-dom';
+import ReactStars from 'react-stars';
+import moment from 'moment';
 
 function Description (props){
 	
@@ -12,6 +10,7 @@ function Description (props){
 	return(
 		<div className={styles.ContainerSlide}>
 			<div className={styles.Overlay}>
+				<img className={styles.Poster} src={detail.poster} alt={detail.title}></img>
 				<ul className={styles.Slideshow}>
 					<li></li>
 					<li></li>
@@ -21,10 +20,10 @@ function Description (props){
 				</ul>
 			</div>
 			<div className={styles.ContainerDesc}>
-				<h1>{detail.title}</h1>
+				<h1>{detail.title}({moment(detail.realeased_date).format("YYYY")})</h1>
 				<ReactStars
   					count={10}
-					size={24}
+					size={30}
 					edit={false}
 					value={detail.rate}
  					color2={'#ffd700'} />
