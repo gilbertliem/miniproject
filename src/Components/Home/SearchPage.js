@@ -50,7 +50,7 @@ export default class SearchPage extends Component {
       const submit = await axios({
         method: "get",
         url: "https://damp-dawn-67180.herokuapp.com/movie/search",
-        body: data,
+        data: data,
         headers: {
           "count-type": "application/x-www-form-urlencoded; charset=utf-8",
         },
