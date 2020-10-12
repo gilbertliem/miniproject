@@ -7,7 +7,7 @@ function Description (props){
 	
 	const {detail} = props;
 	
-	const [rate, setRate] = useState(Number(detail.id))
+	const [rate] = useState(Number(detail.id))
 	
 	
 	return(
