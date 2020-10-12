@@ -85,7 +85,6 @@ function NavDetail () {
 					{!token ? <li onClick={() => onChange('register', true)}><NavLink to="#">Register</NavLink></li>
 						: (
 						<div className={styles.ConUsername}>
-							<img src={user.profileImage} alt="propic" className={styles.Avatar}></img>
 							<li><NavLink to="/user">{user.nama}</NavLink></li>
 						</div>	
 						)}

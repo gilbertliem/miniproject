@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import styles from "./Category.module.css";
 // import MovieList from "./MovieList";
@@ -14,20 +8,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HomeWrapper } from "./Category-styled";
-import { noimg } from "../../Images/noimg.jpg";
+
 
 function Category(props) {
-  const [categories, setCategories] = useState([]);
+
   const [movies, setMovies] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   let [option, setOption] = useState(0);
   const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    // fetchCategory();
-    fetchMovies(currentPage);
-  }, []);
 
   useEffect(() => {
     fetchMovies(currentPage);
@@ -304,108 +293,3 @@ function Category(props) {
 }
 
 export default Category;
-
-{
-  /* {data.genre.map((genre) => (
-  <h5>{genre}</h5>
-))} */
-}
-
-{
-  /* <img
-  src={
-    data.poster_path
-    ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-      : `https://image.tmdb.org/t/p/w500${noimg}`
-    }
-    alt={data.title}
-    />
-    <div className={styles.info}>
-    <h2>{data.title}</h2>
-  </div> */
-}
-
-// useEffect(() => {
-// }, [movies]);
-
-// const fetchCategory = () => {
-//   axios
-//     .get(
-//       // `https://damp-dawn-67180.herokuapp.com/`
-//       `https://api.themoviedb.org/3/genre/movie/list?api_key=86ecab01572806c443d2d6f0ebec2d77&language=en-US`
-//     )
-//     .then((data) => {
-//       setCategories(data.data.genres);
-//       console.log(data);
-//     });
-// };
-{
-  /* {categories.map((category) => {
-    return (
-      <NavLink to={`#`}>
-      <p onClick={() => genre(category.id)}>{category.name}</p>
-      </NavLink>
-    );
-  })} */
-}
-
-// import ReactPaginate from "react-paginate";
-//         <div className={styles.paginate}>
-//           <ReactPaginate
-//             pageCount={1}
-//             pageRangeDisplayed={5}
-//             marginPagesDisplayed={1}
-//             previousLabel={"< "}
-//             nextLabel={" >"}
-//             breakLabel={".."}
-//             pageCount={totalPage}
-//             onPageChange={(page) => setCurrentPage(page.selected)}
-//             containerClassName={"one"}
-//             pageClassName={"two"}
-//             pageLinkClassName={"three"}
-//             activeClassName={"four"}
-//             activeLinkClassName={"five"}
-//             />
-//         </div>
-
-// <Switch>
-//   <Route path="/movies/:category">
-//     <MovieList categories={categories} />
-//   </Route>
-//   <Route path="/">
-//     <MovieList categories={categories} all />
-//   </Route>
-// </Switch>
-{
-  {
-    /* <Router> */
-  }
-  /* <Link to={"/"}>
-            <p className={styles.active}>All</p>
-          </Link>
-          <Link to={"/anime"}>
-            <p>Anime</p>
-          </Link>
-          <Link to={"/action"}>
-            <p>Action</p>
-          </Link>
-          <Link to={"/adventure"}>
-            <p>Adventure</p>
-          </Link>
-          <Link to={"/science"}>
-            <p>Science Fiction</p>
-          </Link>
-          <Link to={"/comedy"}>
-            <p>Comedy</p>
-          </Link> */
-}
-{
-  /* <Switch>
-          <Route path="/anime" component={Anime} />
-          <Route path="/action" component={Action} />
-          <Route path="/adventure" component={Adventure} />
-          <Route path="/science" component={Science} />
-          <Route path="/comedy" component={Comedy} />
-          </Switch>
-        </Router> */
-}

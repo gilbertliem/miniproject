@@ -98,6 +98,7 @@
 .ContainerDesc h1{
 	letter-spacing: .20em;
 	font-size: 60px;
+	width: 70%;
 	text-align: justify;
 	font-weight: bold;
 }
