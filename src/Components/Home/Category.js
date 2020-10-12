@@ -15,24 +15,17 @@ function Category(props) {
 
   const [movies, setMovies] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
   let [option, setOption] = useState(0);
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    fetchMovies(currentPage);
-  }, [option, currentPage]);
-
-  const fetchMovies = () => {
+ useEffect(() => {
     if (option === 0) {
       axios
         .get(
           `https://damp-dawn-67180.herokuapp.com/movie?page=${currentPage}`
-          // `https://api.themoviedb.org/3/movie/now_playing?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${page + 1}`
         )
         .then((data) => {
           setMovies(data.data.result);
-          setTotalPage(data.data.total_pages);
           console.log(data);
         });
     } else {
@@ -40,18 +33,15 @@ function Category(props) {
       axios
         .get(
           `https://damp-dawn-67180.herokuapp.com/movie/category?page=${currentPage}&genre=${option}`
-          // `https://api.themoviedb.org/3/discover/movie?api_key=86ecab01572806c443d2d6f0ebec2d77&page=${
-          //   page + 1
-          // }&with_genres=${option}`
         )
         .then((data) => {
           setMovies(data.data.result);
-          // setTotalPage(data.data.total_pages);
           console.log(data);
         });
     }
     console.log(movies);
-  };
+  }, [option, currentPage, movies]);
+
 
   let genre = (e) => {
     setOption(e);
