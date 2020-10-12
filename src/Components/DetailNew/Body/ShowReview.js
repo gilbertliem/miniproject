@@ -45,7 +45,7 @@ function ShowReview (props) {
 			<div className={styles.RowInput2}>
 			{userData.map(user => {
 				return(
-				<div className={styles.RowShow}>
+				<div className={styles.RowShow} key={user.id}>
 					<div>
 						<img src={user.profileImage} alt={user.nama} />
 						<h2>{user.nama}</h2>

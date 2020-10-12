@@ -20,9 +20,9 @@ export default class SearchPage extends Component {
             {this.props.search?.length > 0
               ? this.props.search.map((data) => {
                   return (
+			  		<div key={data.id} className={styles.card}>
                     <NavLink
                       to={"/detail/" + data.id}
-                      key={data.id}
                       className={styles.card}
                       onClick={() => this.props.detailsHandler(data.id)}
                     >
@@ -39,6 +39,7 @@ export default class SearchPage extends Component {
                         <span className={styles.genre}>{data.rate}</span>
                       </div>
                     </NavLink>
+				  </div>
                   );
                 })
               : "Movie is not available."}
